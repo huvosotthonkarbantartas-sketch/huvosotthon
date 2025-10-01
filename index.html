@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hűvösotthon – Klímaszerviz és karbantartás</title>
+  <meta name="description" content="Klímaberendezések tisztítása, karbantartása és szerelése. Átlátható árlista, gyors időpontfoglalás, megbízható szakemberek." />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root{
+      --bg:#0f0f10;
+      --panel:#151516;
+      --muted:#9aa3a7;
+      --text:#e7ecef;
+      --accent:#39d2c0;
+      --accent-2:#2cb09f;
+      --danger:#ff6464;
+      --shadow:0 6px 24px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:radial-gradient(1200px 1200px at 10% -10%, #18191b 0%, var(--bg) 45%), var(--bg);
+      color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    a{color:var(--accent); text-decoration:none}
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      display:flex; gap:16px; justify-content:flex-end; align-items:center;
+      padding:8px 16px; background:rgba(10,10,11,.7); backdrop-filter:saturate(160%) blur(10px);
+      border-bottom:1px solid #222;
+    }
+    .pill{display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #2a2a2c; border-radius:999px; color:#cfd6da}
+    .pill svg{width:16px; height:16px; opacity:.8}
+
+    /* Layout */
+    .wrap{display:grid; grid-template-columns: 260px 1fr; min-height:100svh}
+
+    /* Sidebar */
+    .sidebar{
+      position:sticky; top:52px; height:calc(100svh - 52px);
+      padding:28px 20px; border-right:1px solid #1e1f21; background:linear-gradient(180deg, #131415 0%, #121314 100%);
+    }
+    .brand{display:flex; align-items:center; gap:12px; margin-bottom:28px}
+    .logo{width:36px; height:36px; border-radius:8px; background:#0c0c0c; border:1px solid #2a2a2c; display:grid; place-items:center; color:var(--accent)}
+    .brand h1{font-size:20px; margin:0}
+
+    nav ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px}
+    nav a{display:block; padding:10px 12px; border-radius:10px; color:#cfd6da; border:1px solid transparent}
+    nav a:hover, nav a.active{background:#161718; border-color:#2a2a2c; color:var(--text)}
+
+    .mobile-toggle{display:none}
+
+    /* Main */
+    main{padding:28px min(5vw,48px)}
+    section{padding:48px 0; border-bottom:1px dashed #242527}
+    .eyebrow{letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:12px}
+    h2{font-size:34px; line-height:1.15; margin:.2em 0 .6em}
+    p{color:#c9d2d6}
+
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center}
+    .hero .card{padding:24px; background:var(--panel); border:1px solid #252629; border-radius:16px; box-shadow:var(--shadow)}
+    .cta{display:flex; gap:12px; margin-top:18px}
+    .btn{padding:10px 14px; border-radius:12px; border:1px solid #2a2a2c; background:#1a1b1d; color:var(--text); cursor:pointer}
+    .btn.primary{background:linear-gradient(180deg, var(--accent), var(--accent-2)); color:#0a1114; font-weight:600}
+
+    /* Szolgáltatások */
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .service{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
+    .service h3{margin-top:0}
+
+    /* Árlista */
+    .pricing{display:grid; grid-template-columns: 1.1fr .9fr; gap:24px}
+    .table{width:100%; border-collapse:separate; border-spacing:0 10px}
+    .table th{font-weight:600; color:#cfd6da; text-align:left; font-size:14px}
+    .table td, .table th{padding:14px 16px; border-top:1px solid #2b2d2f; border-bottom:1px solid #2b2d2f; background:#131415}
+    .table tr td:first-child, .table tr th:first-child{border-left:1px solid #2b2d2f; border-top-left-radius:12px; border-bottom-left-radius:12px}
+    .table tr td:last-child, .table tr th:last-child{border-right:1px solid #2b2d2f; border-top-right-radius:12px; border-bottom-right-radius:12px; text-align:right; font-weight:600; color:#e8f7f4}
+    .note{font-size:14px; color:#9aa3a7; margin-top:8px}
+
+    .brands{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
+    .brands ul{columns:2; margin:0; padding-left:18px}
+
+    /* Csapat */
+    .team{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .person{background:#141516; border:1px solid #242527; border-radius:14px; padding:16px}
+    .person strong{display:block}
+
+    /* Kapcsolat */
+    .contact{display:grid; grid-template-columns: 1fr 1fr; gap:24px}
+    .card{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
+    form{display:grid; gap:12px}
+    input, textarea{width:100%; padding:12px 14px; border:1px solid #2a2a2c; border-radius:12px; background:#0f1011; color:var(--text)}
+    textarea{min-height:120px}
+
+    /* Footer */
+    footer{padding:28px; color:#aeb6bb; text-align:center}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .wrap{grid-template-columns: 1fr}
+      .sidebar{position:static; height:auto; border-right:0}
+      .mobile-toggle{display:flex; justify-content:space-between; align-items:center; padding:14px 16px; border:1px solid #26282a; border-radius:12px}
+      nav{display:none}
+      nav.open{display:block; margin-top:12px}
+      .hero, .pricing, .contact{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .team{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:600px){
+      .team{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- Felső információs sáv -->
+  <div class="topbar">
+    <div class="pill" title="Nyitvatartás">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" stroke-width="1.5" d="M12 6v6l4 2"/></svg>
+      Nyitva: H–P 9–17
+    </div>
+    <a class="pill" href="mailto:huvosotthonkarbantartas@gmail.com" title="E-mail"> 
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" stroke-width="1.5" d="M4 6h16v12H4z"/><path stroke="currentColor" stroke-width="1.5" d="M4 7l8 6 8-6"/></svg>
+      huvosotthonkarbantartas@gmail.com
+    </a>
+    <a class="pill" href="tel:+36704246417" title="Telefon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="currentColor" stroke-width="1.5" d="M6.5 3.5l4 2-2 4c1.5 2.5 3.5 4.5 6 6l4-2 2 4c-1.5 1.5-3.5 2.5-5.5 2.5C9.5 20 4 14.5 4 7.5 4 5.5 5 4 6.5 3.5z"/></svg>
+      +36 70 424 6417
+    </a>
+  </div>
+
+  <div class="wrap">
+    <!-- Oldalsáv menü -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"❄️</div>
+        <h1>Hűvösotthon.hu</h1>
+      </div>
+
+      <div class="mobile-toggle">
+        <strong>Menü</strong>
+        <button class="btn" id="toggleMenu" aria-expanded="false" aria-controls="mainNav">☰</button>
+      </div>
+
+      <nav id="mainNav">
+        <ul>
+          <li><a class="active" href="#kezdolap">Kezdőlap</a></li>
+          <li><a href="#rolunk">Rólunk</a></li>
+          <li><a href="#szolgaltatasok">Szolgáltatások</a></li>
+          <li><a href="#csapat">Csapat</a></li>
+          <li><a href="#arlista">Árlista</a></li>
+          <li><a href="#kapcsolat">Kapcsolat</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Tartalom -->
+    <main>
+      <!-- Kezdőlap / Hero -->
+      <section id="kezdolap" class="hero">
+        <div class="card">
+          <span class="eyebrow">Klímaszerviz & karbantartás</span>
+          <h2>Átlátható árak, tiszta munka, friss levegő.</h2>
+          <p>Professzionális klímatisztítás és karbantartás Budapesten és környékén. Rugalmas időpontok, hivatalos számla, garancia.</p>
+          <div class="cta">
+            <a class="btn primary" href="#kapcsolat">Időpontot kérek</a>
+            <a class="btn" href="#arlista">Megnézem az árakat</a>
+          </div>
+        </div>
+        <div class="card">
+          <strong>Miért fontos a rendszeres karbantartás?</strong>
+          <p>A hőcserélők és szűrők gyorsan elszennyeződhetnek (por, pollen, zsír). Ez rontja a hatásfokot, növeli a fogyasztást és az egészségügyi kockázatokat. Évi 1–2 alkalommal javasolt professzionális tisztítás.</p>
+          <ul>
+            <li>Hatékonyabb hűtés/fűtés, alacsonyabb számla</li>
+            <li>Higiénikus, friss levegő a helyiségben</li>
+            <li>Meghosszabbított készülék-élettartam</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Rólunk -->
+      <section id="rolunk">
+        <span class="eyebrow">Rólunk</span>
+        <h2>Tiszta kommunikáció, becsületes szolgáltatás.</h2>
+        <p>Célunk, hogy ügyfeleink pontosan tudják, mit kapnak és mennyiért. Minden munkát fotós jegyzőkönyvvel és tanácsadással zárunk, a rejtett költségeket elkerüljük.</p>
+      </section>
+
+      <!-- Szolgáltatások -->
+      <section id="szolgaltatasok">
+        <span class="eyebrow">Szolgáltatásaink</span>
+        <h2>A leggyakoribb munkáink</h2>
+        <div class="grid-3">
+          <div class="service">
+            <h3>Split klíma teljes tisztítás</h3>
+            <p>Beltéri és kültéri egység vegyszeres, kíméletes tisztítása, cseppvíz- és kondenz-ellenőrzés, szűrők karbantartása.</p>
+          </div>
+          <div class="service">
+            <h3>Hőcserélő és szűrő fertőtlenítés</h3>
+            <p>Gomba- és baktériummentesítés professzionális szerekkel, a levegőminőség javítására.</p>
+          </div>
+          <div class="service">
+            <h3>Átvizsgálás & diagnosztika</h3>
+            <p>Teljes körű ellenőrzés: csatlakozások, hűtőközeg-szivárgás, elektromos kötések, zajok, vibráció.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Csapat -->
+      <section id="csapat">
+        <span class="eyebrow">Csapat</span>
+        <h2>Tapasztalt, barátságos szakemberek</h2>
+        <div class="team">
+          <div class="person"><strong>Izbéki Bence</strong>Szervizes – tisztítás, hibaelhárítás, üzembe helyezés.</div>
+          <div class="person"><strong>Répássi Boglárka</strong>Ügyfélkapcsolat – időpontok, ajánlatok, számlázás.</div>
+          
+        </div>
+      </section>
+
+      <!-- Árlista -->
+      <section id="arlista">
+        <span class="eyebrow">Árlista</span>
+        <h2>Árak, csomagok – átláthatóan</h2>
+        <div class="pricing">
+          <div>
+            <table class="table" aria-label="Alapcsomag árlista">
+              <thead>
+                <tr><th>Szolgáltatás</th><th>Bruttó ár</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Oldalfali split klíma karbantartás (≤ 5 kW, 1 beltéri + 1 kültéri)</td><td>20 000 Ft</td></tr>
+                <tr><td>Oldalfali split klíma karbantartás (> 5 kW)</td><td>25 000 Ft</td></tr>
+                <tr><td>Mobil klíma teljes tisztítás (2,0–3,5 kW)</td><td>30 000 Ft</td></tr>
+                <tr><td>Alap tisztítás hőcserélő + szűrők fertőtlenítése</td><td>10 000 Ft</td></tr>
+                <tr><td>Mennyezeti egység karbantartás (3,5–7,0 kW)</td><td>35 000 Ft</td></tr>
+              </tbody>
+            </table>
+            <p class="note">Az árak tájékoztató jellegűek, Budapesten belül kiszállási díj nélkül. Több készülék esetén egyedi kedvezmény.</p>
+          </div>
+          <div class="brands">
+            <strong>Klímaberendezések karbantartása – márkák</strong>
+            <div style="height:8px"></div>
+            <em>Split klímák (oldalfali):</em>
+            <ul>
+              <li>Gree</li><li>Midea</li><li>Daikin</li><li>Fujitsu</li><li>Polar</li><li>Syen</li>
+            </ul>
+            <em>Mobil klímák:</em>
+            <ul>
+              <li>Trotec</li><li>Sencor</li><li>Rohnson</li><li>AEG</li><li>Whirlpool</li><li>Electrolux</li>
+            </ul>
+            <em>Mennyezeti/konzol klímák:</em>
+            <ul>
+              <li>Gree</li><li>Midea</li><li>Daikin</li><li>Fujitsu</li><li>Mitsubishi Heavy</li><li>Panasonic</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Kapcsolat -->
+      <section id="kapcsolat">
+        <span class="eyebrow">Kapcsolat</span>
+        <h2>Kérj ajánlatot vagy időpontot</h2>
+        <div class="contact">
+          <div class="card">
+            <strong>Elérhetőségek</strong>
+            <p><strong>Telefon:</strong> <a href="tel:+36704246417">+36 70 424 6417</a><br>
+               <strong>E-mail:</strong> <a href="mailto:huvosotthonkarbantartas@gmail.com">huvosotthonkarbantartas@gmail.com</a><br>
+               <strong>Nyitvatartás:</strong> H–P 9–17<br>
+               <strong>Szolgáltatási terület:</strong> Fót, Dunakeszi, Veresegyház, Őrbottyán, Szada</p>
+            <p><strong>Számlázás:</strong> hivatalos számla, garancia a munkára.</p>
+          </div>
+          <div class="card">
+            <form name="contact" onsubmit="event.preventDefault(); this.reset(); alert('Köszönjük! Hamarosan jelentkezünk.');">
+              <label>Neved<input required type="text" name="name" placeholder="Teljes név"></label>
+              <label>E-mail<input required type="email" name="email" placeholder="valaki@email.hu"></label>
+              <label>Telefonszám<input type="tel" name="phone" placeholder="+36 …"></label>
+              <label>Üzenet<textarea name="message" placeholder="Írd le a készülék típusát, hibát, elérhetőségedet…"></textarea></label>
+              <button class="btn primary" type="submit">Üzenet elküldése</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Hűvösotthon.hu • Minden jog fenntartva • <a href="#kezdolap">Vissza az elejére</a>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Aktív menüpont kiemelése és mobil menü
+    const links = document.querySelectorAll('nav a');
+    const sections = [...links].map(a=>document.querySelector(a.getAttribute('href')));
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const id = '#' + e.target.id;
+          const active = document.querySelector(`nav a[href="${id}"]`);
+          active && active.classList.add('active');
+        }
+      })
+    },{threshold:.5});
+    sections.forEach(s=>s && obs.observe(s));
+
+    const toggle = document.getElementById('toggleMenu');
+    const nav = document.getElementById('mainNav');
+    toggle?.addEventListener('click', ()=>{
+      nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', nav.classList.contains('open'));
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
