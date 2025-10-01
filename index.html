@@ -8,14 +8,14 @@
   <link rel="icon" href="favicon.ico" />
   <style>
     :root {
-      --bg: #e1f5fe; /* világoskék háttér */
+      --bg: #f1f8ff; /* világoskék háttér */
       --panel: #ffffff; /* fehér panel */
-      --muted: #607d8b; /* halvány szürke-kék szín */
+      --muted: #78909c; /* halvány szürke-kék */
       --text: #0d47a1; /* sötétkék szöveg */
       --accent: #039be5; /* világoskék */
       --accent-2: #0288d1; /* kicsit sötétebb kék */
-      --danger: #ff6464; /* piros szín hibáknál */
-      --shadow: 0 6px 24px rgba(0, 0, 0, .35), 0 2px 6px rgba(0, 0, 0, .25);
+      --danger: #ff6464; /* piros hibák */
+      --shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     * {
@@ -30,7 +30,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
     a {
@@ -46,48 +46,48 @@
       gap: 16px;
       justify-content: flex-end;
       align-items: center;
-      padding: 8px 16px;
-      background: rgba(10, 10, 11, .7);
+      padding: 10px 20px;
+      background: rgba(10, 10, 11, 0.8);
       backdrop-filter: saturate(160%) blur(10px);
       border-bottom: 1px solid #222;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     .pill {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 10px;
+      padding: 8px 14px;
       border: 1px solid #2a2a2c;
       border-radius: 999px;
-      color: #cfd6da;
+      color: #ffffff;
+      background: var(--accent);
+      font-weight: 600;
     }
 
     .wrap {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      min-height: 100svh;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+      gap: 40px;
+      padding: 20px;
     }
 
     .sidebar {
       position: sticky;
-      top: 52px;
-      height: calc(100svh - 52px);
-      padding: 28px 20px;
-      border-right: 1px solid #1e1f21;
+      top: 72px;
+      padding: 40px 30px;
+      border-right: 1px solid #ddd;
       background: var(--panel);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
     }
 
     .brand h1 {
-      font-size: 20px;
+      font-size: 28px;
       margin: 0;
       color: var(--text);
+      font-weight: bold;
     }
 
     nav ul {
@@ -96,189 +96,128 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
     }
 
     nav a {
       display: block;
-      padding: 10px 12px;
-      border-radius: 10px;
-      color: #cfd6da;
-      border: 1px solid transparent;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      color: var(--text);
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      transition: 0.3s;
+      box-shadow: var(--shadow);
     }
 
-    nav a:hover,
-    nav a.active {
-      background: #161718;
-      border-color: #2a2a2c;
-      color: var(--text);
+    nav a:hover, nav a.active {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     main {
-      padding: 28px min(5vw, 48px);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      background: var(--panel);
     }
 
     section {
-      padding: 48px 0;
-      border-bottom: 1px dashed #242527;
+      padding: 40px 0;
+      border-bottom: 1px solid #f1f1f1;
     }
 
     .eyebrow {
       letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 14px;
+      font-weight: 600;
     }
 
     h2 {
-      font-size: 34px;
-      line-height: 1.15;
-      margin: .2em 0 .6em;
+      font-size: 36px;
+      line-height: 1.3;
+      margin: 0.5em 0;
       color: var(--text);
+      font-weight: 700;
     }
 
     p {
       color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 28px;
       align-items: center;
+      background: var(--bg);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
     }
 
     .hero .card {
       padding: 24px;
       background: var(--panel);
-      border: 1px solid #252629;
       border-radius: 16px;
       box-shadow: var(--shadow);
     }
 
     .cta {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       margin-top: 18px;
     }
 
     .btn {
-      padding: 10px 14px;
+      padding: 14px 24px;
       border-radius: 12px;
-      border: 1px solid #2a2a2c;
       background: var(--accent);
-      color: var(--text);
+      color: white;
+      font-weight: 600;
+      border: none;
       cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
     }
 
-    .btn.primary {
+    .btn:hover {
       background: var(--accent-2);
-      color: #fff;
-      font-weight: 600;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 32px;
     }
 
     .service {
-      padding: 18px;
+      padding: 24px;
       background: var(--panel);
-      border: 1px solid #242527;
       border-radius: 14px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: 0.3s;
     }
 
-    .pricing {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 24px;
-    }
-
-    .table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 10px;
-    }
-
-    .table th {
-      font-weight: 600;
-      color: #cfd6da;
-      text-align: left;
-      font-size: 14px;
-    }
-
-    .table td,
-    .table th {
-      padding: 14px 16px;
-      border-top: 1px solid #2b2d2f;
-      border-bottom: 1px solid #2b2d2f;
-      background: var(--panel);
-    }
-
-    .note {
-      font-size: 14px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    .brands {
-      padding: 18px;
-      background: var(--panel);
-      border: 1px solid #242527;
-      border-radius: 14px;
-    }
-
-    .team {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .person {
-      background: var(--panel);
-      border: 1px solid #242527;
-      border-radius: 14px;
-      padding: 16px;
-    }
-
-    .contact {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .card {
-      padding: 18px;
-      background: var(--panel);
-      border: 1px solid #242527;
-      border-radius: 14px;
-    }
-
-    form {
-      display: grid;
-      gap: 12px;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #2a2a2c;
-      border-radius: 12px;
-      background: var(--panel);
-      color: var(--text);
-    }
-
-    textarea {
-      min-height: 120px;
+    .service:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
 
     footer {
       padding: 28px;
-      color: var(--muted);
       text-align: center;
+      color: var(--muted);
+      background: #ffffff;
+      border-top: 1px solid #f1f1f1;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -315,7 +254,7 @@
           <h2>Átlátható árak, tiszta munka, friss levegő.</h2>
           <p>Professzionális klímatisztítás és karbantartás Fót, Dunakeszi, Veresegyház, Őrbottyán és Szada környékén.</p>
           <div class="cta">
-            <a class="btn primary" href="#kapcsolat">Időpontot kérek</a>
+            <a class="btn" href="#kapcsolat">Időpontot kérek</a>
             <a class="btn" href="#arlista">Megnézem az árakat</a>
           </div>
         </div>
@@ -340,9 +279,9 @@
       <section id="csapat">
         <span class="eyebrow">Csapat</span>
         <h2>Tapasztalt szakemberek</h2>
-        <div class="team">
-          <div class="person"><strong>Izbéki Bence</strong> Szervizes – tisztítás, hibaelhárítás, üzembe helyezés.</div>
-          <div class="person"><strong>Répássi Boglárka</strong> Ügyfélkapcsolat – időpontok, ajánlatok, számlázás.</div>
+        <div class="grid-3">
+          <div class="service"><strong>Izbéki Bence</strong><p>Szervizes – tisztítás, hibaelhárítás, üzembe helyezés.</p></div>
+          <div class="service"><strong>Répássi Boglárka</strong><p>Ügyfélkapcsolat – időpontok, ajánlatok, számlázás.</p></div>
         </div>
       </section>
 
@@ -354,36 +293,6 @@
           <tr><td>Split klíma karbantartás (2,5 kW - 35,5 kW, kültéri + beltéri)</td><td>20 000 Ft</td></tr>
           <tr><td>Mobil klíma tisztítás</td><td>30 000 Ft</td></tr>
         </table>
-      </section>
-
-      <section id="visszajelzesek">
-        <span class="eyebrow">Visszajelzések</span>
-        <h2>Ügyfeleink mondták</h2>
-        <div id="reviews"></div>
-        <button class="btn" id="moreReviews">Továbbiak betöltése</button>
-        <p id="reviewCount" class="note"></p>
-      </section>
-
-      <section id="kapcsolat">
-        <span class="eyebrow">Kapcsolat</span>
-        <h2>Kérj ajánlatot vagy időpontot</h2>
-        <div class="contact">
-          <div class="card">
-            <p><strong>Telefon:</strong> +36 70 424 6417<br>
-               <strong>Email:</strong> huvosotthonkarbantartas@gmail.com<br>
-               <strong>Terület:</strong> Fót, Dunakeszi, Veresegyház, Őrbottyán, Szada</p>
-          </div>
-          <div class="card">
-            <form action="https://formspree.io/f/xpwyrara" method="POST" id="contactForm">
-              <label>Neved<input required type="text" name="name"></label>
-              <label>E-mail<input required type="email" name="email"></label>
-              <label>Telefonszám<input type="tel" name="phone"></label>
-              <label>Üzenet<textarea name="message"></textarea></label>
-              <button class="btn primary" type="submit">Üzenet elküldése</button>
-              <p id="formResponse" style="display:none; margin-top:10px; font-weight:bold;"></p>
-            </form>
-          </div>
-        </div>
       </section>
 
       <footer>
