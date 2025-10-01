@@ -3,72 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klíma Karbantartás - Szolgáltatásaink és Áraink</title>
+    <title>Klíma Karbantartás - Professzionális Szolgáltatások</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #eef2f5;
             color: #333;
         }
         header {
-            background-color: #2c3e50;
+            background-color: #3498db;
             color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+        }
+        nav {
+            background-color: #2980b9;
             padding: 10px 0;
             text-align: center;
         }
-        nav {
-            text-align: center;
-            margin: 20px 0;
-        }
         nav a {
-            margin: 0 15px;
+            color: white;
             text-decoration: none;
-            color: #2c3e50;
-            font-weight: bold;
+            padding: 14px 20px;
+            margin: 0 10px;
+            font-size: 1.2em;
         }
         nav a:hover {
-            color: #e74c3c;
+            background-color: #1abc9c;
+            color: white;
+            border-radius: 5px;
         }
-        .section {
-            padding: 40px;
-            margin: 20px;
+        section {
+            padding: 50px 10%;
+            margin: 20px auto;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #2980b9;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
         }
         .service {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            gap: 20px;
         }
         .service div {
-            width: 45%;
+            width: 48%;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .service h3 {
-            color: #e74c3c;
+            color: #3498db;
+            font-size: 1.8em;
+            margin-bottom: 10px;
         }
         .price {
-            font-size: 1.2em;
-            color: #27ae60;
+            font-size: 1.5em;
+            color: #2ecc71;
+            margin-top: 10px;
         }
         footer {
-            background-color: #2c3e50;
+            background-color: #34495e;
             color: white;
-            padding: 20px 0;
             text-align: center;
+            padding: 20px 0;
         }
         footer a {
-            color: #e74c3c;
+            color: #1abc9c;
             text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .contact-form button {
+            background-color: #3498db;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Klíma Karbantartás</h1>
-        <p>Fedezze fel a legjobb klímakarbantartási szolgáltatásokat és árainkat!</p>
+        <p>Professzionális klímakarbantartás szolgáltatás, hogy mindig friss és tiszta levegőt élvezhessen!</p>
     </header>
 
     <nav>
@@ -78,59 +124,61 @@
         <a href="#faq">FAQ</a>
     </nav>
 
-    <section id="services" class="section">
+    <section id="services">
         <h2>Szolgáltatásaink</h2>
         <div class="service">
             <div>
                 <h3>Alap Klíma Karbantartás</h3>
-                <p>A rendszer tisztítása és ellenőrzése, beleértve a szűrők tisztítását, valamint a hűtési teljesítmény vizsgálatát.</p>
-                <p class="price">Ár: 10,000 Ft</p>
+                <p>A rendszer tisztítása, szűrők cseréje és a hűtési teljesítmény ellenőrzése.</p>
+                <p class="price">Ár: 12,000 Ft</p>
             </div>
             <div>
                 <h3>Teljes Klíma Karbantartás</h3>
-                <p>Alap karbantartás + belső alkatrészek, például ventilátorok, kompresszorok és kondenzátorok alapos ellenőrzése.</p>
-                <p class="price">Ár: 15,000 Ft</p>
+                <p>Alap karbantartás + belső alkatrészek átvizsgálása, mint a ventilátorok és kompresszorok.</p>
+                <p class="price">Ár: 18,000 Ft</p>
             </div>
         </div>
         <div class="service">
             <div>
                 <h3>Klíma Telepítés</h3>
-                <p>Professzionális klímaberendezés telepítése, az ideális elhelyezés és beüzemelés.</p>
-                <p class="price">Ár: 50,000 Ft-tól</p>
+                <p>Teljeskörű klímaberendezés telepítés, ideális elhelyezés és beüzemelés.</p>
+                <p class="price">Ár: 55,000 Ft-tól</p>
             </div>
             <div>
                 <h3>Klíma Javítás</h3>
-                <p>Ha a klímája nem működik megfelelően, mi gyorsan és hatékonyan elvégzünk minden szükséges javítást.</p>
-                <p class="price">Ár: 8,000 Ft-tól</p>
+                <p>Hibák gyors diagnosztizálása és hatékony javítása, hogy ne maradjon klíma nélkül!</p>
+                <p class="price">Ár: 10,000 Ft-tól</p>
             </div>
         </div>
     </section>
 
-    <section id="pricing" class="section">
+    <section id="pricing">
         <h2>Árak</h2>
-        <p>Az áraink átláthatóak, és minden szolgáltatásunk a legjobb minőségű munkát biztosítja. A fenti árak az alap szolgáltatásokat tartalmazzák. Az árak változhatnak a klíma típusától és a munka mennyiségétől függően.</p>
+        <p>Az áraink minden szolgáltatásra vonatkozóan transzparensek és versenyképesek. Különböző csomagokat kínálunk, hogy a legjobb megoldást találja meg a klímája számára.</p>
     </section>
 
-    <section id="contact" class="section">
+    <section id="contact">
         <h2>Kapcsolat</h2>
-        <p>Vegye fel velünk a kapcsolatot, hogy időpontot egyeztessünk, vagy ha kérdése van!</p>
-        <form action="mailto:info@klimakarbantartas.hu" method="post" enctype="text/plain">
-            <label for="name">Név:</label>
-            <input type="text" id="name" name="name" required><br><br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
-            <label for="message">Üzenet:</label><br>
-            <textarea id="message" name="message" rows="4" required></textarea><br><br>
-            <button type="submit">Küldés</button>
-        </form>
+        <p>Vegye fel velünk a kapcsolatot! Kérjen időpontot vagy kérdése van? Töltse ki az űrlapot, és mi hamarosan válaszolunk!</p>
+        <div class="contact-form">
+            <form action="mailto:info@klimakarbantartas.hu" method="post" enctype="text/plain">
+                <label for="name">Név:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="message">Üzenet:</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+                <button type="submit">Küldés</button>
+            </form>
+        </div>
     </section>
 
-    <section id="faq" class="section">
-        <h2>Gyakran Ismételt Kérdések (FAQ)</h2>
+    <section id="faq">
+        <h2>Gyakran Ismételt Kérdések</h2>
         <h3>Miért fontos a klíma karbantartás?</h3>
-        <p>A klíma rendszeres karbantartása segít elkerülni a drága javításokat, növeli a készülék élettartamát, és biztosítja, hogy mindig tiszta és friss levegőt kapjon.</p>
-        <h3>Milyen gyakran érdemes karbantartani a klímát?</h3>
-        <p>A klíma karbantartását érdemes évente legalább egyszer elvégeztetni, különösen a nyári szezon előtt.</p>
+        <p>A rendszeres karbantartás megakadályozza a meghibásodásokat és növeli a készülék élettartamát. Emellett segít abban, hogy a klíma mindig hatékonyan működjön.</p>
+        <h3>Mikor kell karbantartani a klímát?</h3>
+        <p>A legjobb, ha a karbantartást évente legalább egyszer elvégezteti, különösen a nyári szezon előtt.</p>
     </section>
 
     <footer>
