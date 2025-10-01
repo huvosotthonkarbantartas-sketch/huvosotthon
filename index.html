@@ -24,6 +24,8 @@
       color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
     a{color:var(--accent); text-decoration:none}
+
+    /* Topbar */
     .topbar{
       position:sticky; top:0; z-index:50;
       display:flex; gap:16px; justify-content:flex-end; align-items:center;
@@ -31,56 +33,80 @@
       border-bottom:1px solid #222;
     }
     .pill{display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #2a2a2c; border-radius:999px; color:#cfd6da}
+
+    /* Layout */
     .wrap{display:grid; grid-template-columns: 260px 1fr; min-height:100svh}
-    .sidebar{
-      position:sticky; top:52px; height:calc(100svh - 52px);
-      padding:28px 20px; border-right:1px solid #1e1f21; background:linear-gradient(180deg, #131415 0%, #121314 100%);
-    }
+    .sidebar{position:sticky; top:52px; height:calc(100svh - 52px); padding:28px 20px; border-right:1px solid #1e1f21; background:#131415}
     .brand{margin-bottom:28px}
     .brand h1{font-size:20px; margin:0}
     nav ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px}
     nav a{display:block; padding:10px 12px; border-radius:10px; color:#cfd6da; border:1px solid transparent}
     nav a:hover, nav a.active{background:#161718; border-color:#2a2a2c; color:var(--text)}
+
     main{padding:28px min(5vw,48px)}
     section{padding:48px 0; border-bottom:1px dashed #242527}
     .eyebrow{letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:12px}
     h2{font-size:34px; line-height:1.15; margin:.2em 0 .6em}
     p{color:#c9d2d6}
+
+    /* Hero */
     .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center}
     .hero .card{padding:24px; background:var(--panel); border:1px solid #252629; border-radius:16px; box-shadow:var(--shadow)}
     .cta{display:flex; gap:12px; margin-top:18px}
     .btn{padding:10px 14px; border-radius:12px; border:1px solid #2a2a2c; background:#1a1b1d; color:var(--text); cursor:pointer}
     .btn.primary{background:linear-gradient(180deg, var(--accent), var(--accent-2)); color:#0a1114; font-weight:600}
+
+    /* Szolgáltatások */
     .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
     .service{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
-    .pricing{display:grid; grid-template-columns: 1.1fr .9fr; gap:24px}
+
+    /* Árlista */
     .table{width:100%; border-collapse:separate; border-spacing:0 10px}
     .table th{font-weight:600; color:#cfd6da; text-align:left; font-size:14px}
     .table td, .table th{padding:14px 16px; border:1px solid #2b2d2f; background:#131415}
     .note{font-size:14px; color:#9aa3a7; margin-top:8px}
+
+    /* Csapat */
     .team{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
     .person{background:#141516; border:1px solid #242527; border-radius:14px; padding:16px}
     .person strong{display:block}
+
+    /* Kapcsolat */
     .contact{display:grid; grid-template-columns: 1fr 1fr; gap:24px}
     .card{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
     form{display:grid; gap:12px}
     input, textarea{width:100%; padding:12px 14px; border:1px solid #2a2a2c; border-radius:12px; background:#0f1011; color:var(--text)}
     textarea{min-height:120px}
+
+    /* Galéria */
+    .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+    .gallery figure{margin:0; background:#111213; border:1px solid #242527; border-radius:12px; overflow:hidden}
+    .gallery img{display:block; width:100%; height:220px; object-fit:cover}
+    .gallery figcaption{padding:8px 10px; font-size:13px; color:#aeb6bb}
+
+    /* Visszajelzések */
+    .reviews{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .review-card{background:#141516; border:1px solid #242527; border-radius:14px; padding:14px}
+    .stars{font-size:14px; color:#ffd666; letter-spacing:1px}
+    .review-meta{font-size:12px; color:#9aa3a7}
+    .load-more{margin-top:16px}
+
     footer{padding:28px; color:#aeb6bb; text-align:center}
+
+    /* Responsive */
     @media (max-width: 980px){
       .wrap{grid-template-columns: 1fr}
-      .sidebar{position:static; height:auto; border-right:0}
-      .hero, .pricing, .contact{grid-template-columns:1fr}
+      .hero, .contact{grid-template-columns:1fr}
       .grid-3{grid-template-columns:1fr}
-      .team{grid-template-columns:1fr 1fr}
+      .team, .gallery, .reviews{grid-template-columns:1fr 1fr}
     }
     @media (max-width:600px){
-      .team{grid-template-columns:1fr}
+      .team, .gallery, .reviews{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <!-- Felső sáv -->
+  <!-- Topbar -->
   <div class="topbar">
     <div class="pill">Nyitva: H–P 9–17</div>
     <a class="pill" href="mailto:huvosotthonkarbantartas@gmail.com">huvosotthonkarbantartas@gmail.com</a>
@@ -89,16 +115,16 @@
 
   <div class="wrap">
     <aside class="sidebar">
-      <div class="brand">
-        <h1>Hűvösotthon.hu</h1>
-      </div>
-      <nav id="mainNav">
+      <div class="brand"><h1>Hűvösotthon.hu</h1></div>
+      <nav>
         <ul>
           <li><a class="active" href="#kezdolap">Kezdőlap</a></li>
           <li><a href="#rolunk">Rólunk</a></li>
           <li><a href="#szolgaltatasok">Szolgáltatások</a></li>
           <li><a href="#csapat">Csapat</a></li>
           <li><a href="#arlista">Árlista</a></li>
+          <li><a href="#munkaink">Munkáink</a></li>
+          <li><a href="#visszajelzesek">Visszajelzések</a></li>
           <li><a href="#kapcsolat">Kapcsolat</a></li>
         </ul>
       </nav>
@@ -159,6 +185,40 @@
         <p class="note">Az árak tájékoztató jellegűek, több készülék esetén kedvezmény.</p>
       </section>
 
+      <!-- Munkáink -->
+      <section id="munkaink">
+        <span class="eyebrow">Munkáink</span>
+        <h2>Előtte–utána és helyszíni fotók</h2>
+        <div class="gallery">
+          <figure>
+            <img src="images/work1.jpg" alt="Kültéri egység tisztítás – előtte"
+                 onerror="this.onerror=null; this.src='https://picsum.photos/600/400?random=1';">
+            <figcaption>Kültéri egység tisztítás – előtte</figcaption>
+          </figure>
+          <figure>
+            <img src="images/work2.jpg" alt="Kültéri egység tisztítás – utána"
+                 onerror="this.onerror=null; this.src='https://picsum.photos/600/400?random=2';">
+            <figcaption>Kültéri egység tisztítás – utána</figcaption>
+          </figure>
+          <figure>
+            <img src="images/work3.jpg" alt="Beltéri egység fertőtlenítés"
+                 onerror="this.onerror=null; this.src='https://picsum.photos/600/400?random=3';">
+            <figcaption>Beltéri egység fertőtlenítés</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Visszajelzések -->
+      <section id="visszajelzesek">
+        <span class="eyebrow">Visszajelzések</span>
+        <h2>Ügyfeleink mondták</h2>
+        <div class="reviews" id="reviews"></div>
+        <div class="load-more">
+          <button class="btn" id="moreReviews">További értékelések betöltése</button>
+          <p class="note" id="reviewCount"></p>
+        </div>
+      </section>
+
       <!-- Kapcsolat -->
       <section id="kapcsolat">
         <span class="eyebrow">Kapcsolat</span>
@@ -190,7 +250,7 @@
   </div>
 
   <script>
-    // Aktív menü kiemelés
+    // Aktív menü
     const links = document.querySelectorAll('nav a');
     const sections = [...links].map(a=>document.querySelector(a.getAttribute('href')));
     const obs = new IntersectionObserver((entries)=>{
@@ -204,7 +264,13 @@
       })
     },{threshold:.5});
     sections.forEach(s=>s && obs.observe(s));
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+
+    // Dinamikus visszajelzések
+    (function(){
+      const container = document.getElementById('reviews');
+      if(!container) return;
+      const names = ['Bence','Boglárka','Dóra','Máté','Eszter','Gábor','Zsófi','Ádám','Dani','Viktor','Lilla','Petra','Kata','Judit','Levente','Bálint','Anna'];
+      const towns = ['Fót','Dunakeszi','Veresegyház','Őrbottyán','Szada','Budapest'];
+      const comments = [
+        'Gyorsak és precízek, ajánlom!',
+        'Szép tis
