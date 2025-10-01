@@ -1,238 +1,479 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Profi légkondicionáló karbantartás, telepítés, hibajavítás és energiahatékonyság optimalizálása.">
-    <title>Légkondi Karbantartás - Profi Szolgáltatás</title>
-    <style>
-        /* Alap stílusok */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #333;
-            color: #fff;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hűvösotthon – Klímaszerviz és karbantartás</title>
+  <meta name="description" content="Klímaberendezések tisztítása, karbantartása és szerelése. Átlátható árlista, gyors időpontfoglalás, megbízható szakemberek." />
+  <meta property="og:title" content="Hűvösotthon – Klímaszerviz és karbantartás" />
+  <meta property="og:description" content="Klímaberendezések tisztítása, karbantartása és szerelése." />
+  <meta property="og:image" content="image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root {
+      --bg: #101214;
+      --panel: #171b1e;
+      --muted: #9e9e9e;
+      --text: #e5e5e5;
+      --accent: #5ac8b4;
+      --accent-2: #3499b8;
+      --danger: #f06a6a;
+      --shadow: 0 10px 35px rgba(0, 0, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
-        /* Fejléc */
-        header {
-            background-color: #1c1c1c;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    * {
+      box-sizing: border-box;
+    }
 
-        header .logo img {
-            width: 150px;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        header nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 1200px at 10% -10%, #18191b 0%, var(--bg) 45%), var(--bg);
+      color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
 
-        header nav ul li {
-            margin-left: 30px;
-        }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-        header nav ul li a {
-            color: #00b5e2;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      gap: 16px;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 8px 16px;
+      background: rgba(10, 10, 11, 0.7);
+      backdrop-filter: saturate(160%) blur(10px);
+      border-bottom: 1px solid #222;
+    }
 
-        /* Hero szakasz */
-        .hero {
-            background-image: url('https://via.placeholder.com/1920x800'); /* Használj egy megfelelő háttérképet */
-            background-size: cover;
-            color: white;
-            text-align: center;
-            padding: 120px 20px;
-        }
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid #2a2a2c;
+      border-radius: 999px;
+      color: #cfd6da;
+    }
 
-        .hero h1 {
-            font-size: 3em;
-            margin: 0;
-        }
+    .wrap {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      min-height: 100svh;
+      gap: 28px;
+      padding: 20px;
+    }
 
-        .hero p {
-            font-size: 1.2em;
-            margin: 20px 0;
-        }
+    .sidebar {
+      position: sticky;
+      top: 52px;
+      height: calc(100svh - 52px);
+      padding: 28px 20px;
+      border-left: 1px solid #1e1f21;
+      background: linear-gradient(180deg, #131415 0%, #121314 100%);
+    }
 
-        .cta-btn {
-            background-color: #00b5e2;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
+    .brand h1 {
+      font-size: 20px;
+      margin: 0;
+    }
 
-        /* Szolgáltatások */
-        .services {
-            background-color: #222;
-            padding: 50px 20px;
-            text-align: center;
-        }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-        .services h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
+    nav a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: #cfd6da;
+      border: 1px solid transparent;
+    }
 
-        .service {
-            display: inline-block;
-            width: 24%;
-            margin: 20px;
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
+    nav a:hover,
+    nav a.active {
+      background: #161718;
+      border-color: #2a2a2c;
+      color: var(--text);
+    }
 
-        .service img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-        }
+    main {
+      padding: 28px min(5vw, 48px);
+      text-align: right;
+    }
 
-        .service h3 {
-            font-size: 1.5em;
-            color: #00b5e2;
-        }
+    section {
+      padding: 48px 0;
+      border-bottom: 1px dashed #242527;
+    }
 
-        /* Kapcsolat */
-        .contact {
-            background-color: #1c1c1c;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
+    .eyebrow {
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-        .contact form {
-            display: inline-block;
-            background-color: #333;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            width: 60%;
-        }
+    h2 {
+      font-size: 34px;
+      line-height: 1.15;
+      margin: .2em 0 .6em;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards;
+    }
 
-        .contact form label {
-            display: block;
-            margin-bottom: 10px;
-        }
+    p {
+      color: #c9d2d6;
+    }
 
-        .contact form input, .contact form textarea {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #555;
-        }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
 
-        .contact form button {
-            background-color: #00b5e2;
-            color: white;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        /* Lábléc */
-        footer {
-            background-color: #111;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 28px;
+      align-items: center;
+      justify-items: end;
+    }
 
-        footer .social a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-    </style>
+    .cta {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      background: #1a1b1d;
+      color: var(--text);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .btn.primary {
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service {
+      padding: 18px;
+      background: #141516;
+      border: 1px solid #242527;
+      border-radius: 14px;
+    }
+
+    .pricing {
+      display: grid;
+      gap: 24px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 10px;
+    }
+
+    .table td {
+      padding: 14px 16px;
+      border: 1px solid #2b2d2f;
+      border-radius: 10px;
+      background: #131415;
+      text-align: right;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #9aa3a7;
+      margin-top: 8px;
+    }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .person {
+      background: #141516;
+      border: 1px solid #242527;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .review-card {
+      background: #141516;
+      border: 1px solid #242527;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .stars {
+      color: #ffd666;
+      font-size: 14px;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .card {
+      padding: 18px;
+      background: #141516;
+      border: 1px solid #242527;
+      border-radius: 14px;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #2a2a2c;
+      border-radius: 12px;
+      background: #0f1011;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    footer {
+      padding: 28px;
+      color: #aeb6bb;
+      text-align: right;
+    }
+
+    @media (max-width: 980px) {
+      .wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .reviews {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .team {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .reviews {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Fejléc -->
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Légkondi Karbantartás Logo">
+  <div class="topbar">
+    <div class="pill">Nyitva: H–P 9–17</div>
+    <a class="pill" href="mailto:huvosotthonkarbantartas@gmail.com">📧 huvosotthonkarbantartas@gmail.com</a>
+    <a class="pill" href="tel:+36704246417">📞 +36 70 424 6417</a>
+  </div>
+
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand"><h1>Hűvösotthon.hu</h1></div>
+      <nav>
+        <ul>
+          <li><a class="active" href="#kezdolap">Kezdőlap</a></li>
+          <li><a href="#rolunk">Rólunk</a></li>
+          <li><a href="#szolgaltatasok">Szolgáltatások</a></li>
+          <li><a href="#csapat">Csapat</a></li>
+          <li><a href="#arlista">Árlista</a></li>
+          <li><a href="#visszajelzesek">Visszajelzések</a></li>
+          <li><a href="#kapcsolat">Kapcsolat</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="kezdolap" class="hero">
+        <div class="card">
+          <span class="eyebrow">Klímaszerviz & karbantartás</span>
+          <h2>Átlátható árak, tiszta munka, friss levegő.</h2>
+          <p>Professzionális klímatisztítás Fót, Dunakeszi, Veresegyház, Őrbottyán és Szada környékén.</p>
+          <div class="cta">
+            <a class="btn primary" href="#kapcsolat">Időpontot kérek</a>
+            <a class="btn" href="#arlista">Megnézem az árakat</a>
+          </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Kezdőlap</a></li>
-                <li><a href="#services">Szolgáltatások</a></li>
-                <li><a href="#about">Rólunk</a></li>
-                <li><a href="#contact">Kapcsolat</a></li>
-            </ul>
-        </nav>
-    </header>
+      </section>
 
-    <!-- Hero szakasz -->
-    <section id="home" class="hero">
-        <h1>Minden otthonban hűvös kényelem</h1>
-        <p>Üdvözöljük a Légkondi Karbantartás oldalán! A legjobb minőségű szolgáltatások, amelyek biztosítják otthona hűvös légkörét.</p>
-        <a href="#contact" class="cta-btn">Lépj velünk kapcsolatba!</a>
-    </section>
+      <section id="rolunk">
+        <span class="eyebrow">Rólunk</span>
+        <h2>Tiszta kommunikáció, becsületes szolgáltatás.</h2>
+        <p>Nincsenek rejtett költségek, hivatalos számlával és garanciával dolgozunk.</p>
+      </section>
 
-    <!-- Szolgáltatások -->
-    <section id="services" class="services">
-        <h2>Szolgáltatásaink</h2>
-        <div class="service">
-            <img src="https://via.placeholder.com/400x250" alt="Karbantartás">
-            <h3>Karbantartás</h3>
-            <p>Éves karbantartás, szűrők tisztítása, hűtőközeg csere és sok más.</p>
+      <section id="szolgaltatasok">
+        <span class="eyebrow">Szolgáltatásaink</span>
+        <h2>A leggyakoribb munkáink</h2>
+        <div class="grid-3">
+          <div class="service">
+            <h3>Split klíma tisztítás</h3>
+            <p>Beltéri és kültéri egység tisztítása.</p>
+          </div>
+          <div class="service">
+            <h3>Hőcserélő fertőtlenítés</h3>
+            <p>Baktérium- és gombaölő kezelés.</p>
+          </div>
+          <div class="service">
+            <h3>Átvizsgálás & diagnosztika</h3>
+            <p>Teljes körű ellenőrzés.</p>
+          </div>
         </div>
-        <div class="service">
-            <img src="https://via.placeholder.com/400x250" alt="Telepítés">
-            <h3>Telepítés</h3>
-            <p>Új légkondicionáló rendszerek telepítése és beüzemelése.</p>
+      </section>
+
+      <section id="csapat">
+        <span class="eyebrow">Csapat</span>
+        <h2>Tapasztalt szakemberek</h2>
+        <div class="team">
+          <div class="person"><strong>Izbéki Bence</strong> Szervizes – tisztítás, hibaelhárítás, üzembe helyezés.</div>
+          <div class="person"><strong>Répássi Boglárka</strong> Ügyfélkapcsolat – időpontok, ajánlatok, számlázás.</div>
         </div>
-        <div class="service">
-            <img src="https://via.placeholder.com/400x250" alt="Hibajavítás">
-            <h3>Hibajavítás</h3>
-            <p>Gyors és hatékony hibajavítási szolgáltatás minden típusú légkondicionálóhoz.</p>
+      </section>
+
+      <section id="arlista">
+        <span class="eyebrow">Árlista</span>
+        <h2>Átlátható árak</h2>
+        <table class="table">
+          <tr>
+            <td>Split klíma karbantartás (≤5 kW)</td>
+            <td>20 000 Ft</td>
+          </tr>
+          <tr>
+            <td>Split klíma karbantartás (>5 kW)</td>
+            <td>25 000 Ft</td>
+          </tr>
+          <tr>
+            <td>Mobil klíma tisztítás</td>
+            <td>30 000 Ft</td>
+          </tr>
+          <tr>
+            <td>Mennyezeti egység karbantartás</td>
+            <td>35 000 Ft</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="visszajelzesek">
+        <span class="eyebrow">Visszajelzések</span>
+        <h2>Ügyfeleink mondták</h2>
+        <div class="reviews" id="reviews"></div>
+        <button class="btn" id="moreReviews">További értékelések betöltése</button>
+        <p id="reviewCount" class="note"></p>
+      </section>
+
+      <section id="kapcsolat">
+        <span class="eyebrow">Kapcsolat</span>
+        <h2>Kérj ajánlatot vagy időpontot</h2>
+        <div class="contact">
+          <div class="card">
+            <p><strong>Telefon:</strong> +36 70 424 6417<br> <strong>Email:</strong> huvosotthonkarbantartas@gmail.com<br> <strong>Terület:</strong> Fót, Dunakeszi, Veresegyház, Őrbottyán, Szada</p>
+          </div>
+          <div class="card">
+            <form action="https://formspree.io/f/xpwyrara" method="POST" id="contactForm">
+              <label>Neved<input required type="text" name="name"></label>
+              <label>E-mail<input required type="email" name="email"></label>
+              <label>Telefonszám<input type="tel" name="phone"></label>
+              <label>Üzenet<textarea name="message"></textarea></label>
+              <button class="btn primary" type="submit">Üzenet elküldése</button>
+              <p id="formResponse" style="display:none; margin-top:10px; font-weight:bold;"></p>
+            </form>
+          </div>
         </div>
-        <div class="service">
-            <img src="https://via.placeholder.com/400x250" alt="Energiahatékonyság">
-            <h3>Energiahatékonyság</h3>
-            <p>Optimalizáljuk légkondicionálója teljesítményét, hogy spóroljon az energiával.</p>
-        </div>
-    </section>
+      </section>
 
-    <!-- Kapcsolat -->
-    <section id="contact" class="contact">
-        <h2>Kapcsolat</h2>
-        <form action="#" method="post">
-            <label for="name">Név</label>
-            <input type="text" id="name" name="name" required>
+      <footer>© <span id="year"></span> Hűvösotthon.hu</footer>
+    </main>
+  </div>
 
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" required>
+  <script>
+    const links = document.querySelectorAll('nav a');
+    const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          document.querySelector(`nav a[href="#${e.target.id}"]`)?.classList.add('active');
+        }
+      });
+    }, { threshold: .5 });
+    sections.forEach(s => s && obs.observe(s));
 
-            <label for="message">Üzenet</label>
-            <textarea id="message" name="message" required></textarea>
-
-            <button type="submit">Küldés</button>
-        </form>
-    </section>
-
-    <!-- Lábléc -->
-    <footer>
-        <p>&copy; 2025 Légkondi Karbantartás. Minden jog fenntartva.</p>
-        <div class="social">
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-        </div>
-    </footer>
-</body>
-</html>
+    // Visszajelzések (300 db)
+    (function () {
+      const cont = document.getElementById('reviews');
+      if (!cont) return;
+      const fn = ['Bence', 'Boglárka', 'Dóra', 'Marcell', 'Máté', 'Eszter', 'Gábor', 'Zsófi', 'Ádám', 'Dani', 'Lilla', 'Anna'];
+      const towns = ['Fót', 'Dunakeszi', 'Veresegyház', 'Őrbottyán', 'Szada'];
+      const comm = ['Gyorsak és precízek!', 'Szép munka, udvariasak.', 'Pontos érkezés.', 'Szakértelem látszik.', 'Korrekt ár.'];
+      const total = 300;
+      let loaded = 0;
+      const batch = 20;
+      function star(n) {
+        return '★'.repeat(n) + '☆'.repeat(5 - n);
+      }
+      function card(i) {
+        const d = document.createElement('div');
+        d.className = 'review-card';
+        d.innerHTML = `<div class="stars">${star(5)}</div><p>"${comm[i % comm.length]}"</p><div class="review-meta">${fn[i % fn.length]} – ${towns[i % towns.length]}</div
