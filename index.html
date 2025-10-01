@@ -7,218 +7,66 @@
   <meta name="description" content="Klímaberendezések tisztítása, karbantartása és szerelése. Átlátható árlista, gyors időpontfoglalás, megbízható szakemberek." />
   <link rel="icon" href="favicon.ico" />
   <style>
-    :root {
-      --bg: #e0f7fa; /* világos kék háttér */
-      --panel: #ffffff; /* fehér panel */
-      --muted: #78909c; /* halvány szürke-kék */
-      --text: #01579b; /* sötétkék szöveg */
-      --accent: #00bcd4; /* élénk kék */
-      --accent-2: #0288d1; /* sötétebb kék */
-      --danger: #ff6464; /* piros hibák */
-      --shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+    :root{
+      --bg:#0f0f10;
+      --panel:#151516;
+      --muted:#9aa3a7;
+      --text:#e7ecef;
+      --accent:#39d2c0;
+      --accent-2:#2cb09f;
+      --danger:#ff6464;
+      --shadow:0 6px 24px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.25);
     }
-
-    * {
-      box-sizing: border-box;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:radial-gradient(1200px 1200px at 10% -10%, #18191b 0%, var(--bg) 45%), var(--bg);
+      color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
-
-    html {
-      scroll-behavior: smooth; /* Smooth scroll for anchor links */
+    a{color:var(--accent); text-decoration:none}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      display:flex; gap:16px; justify-content:flex-end; align-items:center;
+      padding:8px 16px; background:rgba(10,10,11,.7); backdrop-filter:saturate(160%) blur(10px);
+      border-bottom:1px solid #222;
     }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    .pill{display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #2a2a2c; border-radius:999px; color:#cfd6da}
+    .wrap{display:grid; grid-template-columns: 260px 1fr; min-height:100svh}
+    .sidebar{
+      position:sticky; top:52px; height:calc(100svh - 52px);
+      padding:28px 20px; border-right:1px solid #1e1f21; background:linear-gradient(180deg, #131415 0%, #121314 100%);
     }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display: flex;
-      gap: 16px;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 10px 20px;
-      background: rgba(10, 10, 11, 0.8);
-      backdrop-filter: saturate(160%) blur(10px);
-      border-bottom: 1px solid #222;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border: 1px solid #2a2a2c;
-      border-radius: 999px;
-      color: #ffffff;
-      background: var(--accent);
-      font-weight: 600;
-    }
-
-    .wrap {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      min-height: 100vh;
-      gap: 40px;
-      padding: 20px;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 72px;
-      padding: 40px 30px;
-      border-right: 1px solid #ddd;
-      background: var(--panel);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .brand h1 {
-      font-size: 28px;
-      margin: 0;
-      color: var(--text);
-      font-weight: bold;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    nav a {
-      display: block;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-weight: 600;
-      color: var(--text);
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      transition: 0.3s;
-      box-shadow: var(--shadow);
-    }
-
-    nav a:hover, nav a.active {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    main {
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      background: var(--panel);
-    }
-
-    section {
-      padding: 40px 0;
-      border-bottom: 1px solid #f1f1f1;
-    }
-
-    .eyebrow {
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    h2 {
-      font-size: 36px;
-      line-height: 1.3;
-      margin: 0.5em 0;
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    p {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 28px;
-      align-items: center;
-      background: var(--bg);
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero .card {
-      padding: 24px;
-      background: var(--panel);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .cta {
-      display: flex;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .btn {
-      padding: 14px 24px;
-      border-radius: 12px;
-      background: var(--accent);
-      color: white;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: var(--accent-2);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-
-    .service {
-      padding: 24px;
-      background: var(--panel);
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      text-align: center;
-      transition: 0.3s;
-    }
-
-    .service:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    footer {
-      padding: 28px;
-      text-align: center;
-      color: var(--muted);
-      background: #ffffff;
-      border-top: 1px solid #f1f1f1;
-      font-size: 14px;
-    }
+    .brand{display:flex; align-items:center; gap:12px; margin-bottom:28px}
+    .brand h1{font-size:20px; margin:0}
+    nav ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px}
+    nav a{display:block; padding:10px 12px; border-radius:10px; color:#cfd6da; border:1px solid transparent}
+    nav a:hover, nav a.active{background:#161718; border-color:#2a2a2c; color:var(--text)}
+    main{padding:28px min(5vw,48px)}
+    section{padding:48px 0; border-bottom:1px dashed #242527}
+    .eyebrow{letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:12px}
+    h2{font-size:34px; line-height:1.15; margin:.2em 0 .6em}
+    p{color:#c9d2d6}
+    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center}
+    .hero .card{padding:24px; background:var(--panel); border:1px solid #252629; border-radius:16px; box-shadow:var(--shadow)}
+    .cta{display:flex; gap:12px; margin-top:18px}
+    .btn{padding:10px 14px; border-radius:12px; border:1px solid #2a2a2c; background:#1a1b1d; color:var(--text); cursor:pointer}
+    .btn.primary{background:linear-gradient(180deg, var(--accent), var(--accent-2)); color:#0a1114; font-weight:600}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .service{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
+    .pricing{display:grid; grid-template-columns: 1.1fr .9fr; gap:24px}
+    .table{width:100%; border-collapse:separate; border-spacing:0 10px}
+    .table th{font-weight:600; color:#cfd6da; text-align:left; font-size:14px}
+    .table td, .table th{padding:14px 16px; border-top:1px solid #2b2d2f; border-bottom:1px solid #2b2d2f; background:#131415}
+    .note{font-size:14px; color:#9aa3a7; margin-top:8px}
+    .brands{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
+    .team{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+    .person{background:#141516; border:1px solid #242527; border-radius:14px; padding:16px}
+    .contact{display:grid; grid-template-columns: 1fr 1fr; gap:24px}
+    .card{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
+    form{display:grid; gap:12px}
+    input, textarea{width:100%; padding:12px 14px; border:1px solid #2a2a2c; border-radius:12px; background:#0f1011; color:var(--text)}
+    textarea{min-height:120px}
+    footer{padding:28px; color:#aeb6bb; text-align:center}
   </style>
 </head>
 <body>
@@ -254,7 +102,7 @@
           <h2>Átlátható árak, tiszta munka, friss levegő.</h2>
           <p>Professzionális klímatisztítás és karbantartás Fót, Dunakeszi, Veresegyház, Őrbottyán és Szada környékén.</p>
           <div class="cta">
-            <a class="btn" href="#kapcsolat">Időpontot kérek</a>
+            <a class="btn primary" href="#kapcsolat">Időpontot kérek</a>
             <a class="btn" href="#arlista">Megnézem az árakat</a>
           </div>
         </div>
@@ -279,9 +127,9 @@
       <section id="csapat">
         <span class="eyebrow">Csapat</span>
         <h2>Tapasztalt szakemberek</h2>
-        <div class="grid-3">
-          <div class="service"><strong>Izbéki Bence</strong><p>Szervizes – tisztítás, hibaelhárítás, üzembe helyezés.</p></div>
-          <div class="service"><strong>Répássi Boglárka</strong><p>Ügyfélkapcsolat – időpontok, ajánlatok, számlázás.</p></div>
+        <div class="team">
+          <div class="person"><strong>Izbéki Bence</strong> Szervizes – tisztítás, hibaelhárítás, üzembe helyezés.</div>
+          <div class="person"><strong>Répássi Boglárka</strong> Ügyfélkapcsolat – időpontok, ajánlatok, számlázás.</div>
         </div>
       </section>
 
@@ -295,6 +143,36 @@
         </table>
       </section>
 
+      <section id="visszajelzesek">
+        <span class="eyebrow">Visszajelzések</span>
+        <h2>Ügyfeleink mondták</h2>
+        <div id="reviews"></div>
+        <button class="btn" id="moreReviews">Továbbiak betöltése</button>
+        <p id="reviewCount" class="note"></p>
+      </section>
+
+      <section id="kapcsolat">
+        <span class="eyebrow">Kapcsolat</span>
+        <h2>Kérj ajánlatot vagy időpontot</h2>
+        <div class="contact">
+          <div class="card">
+            <p><strong>Telefon:</strong> +36 70 424 6417<br>
+               <strong>Email:</strong> huvosotthonkarbantartas@gmail.com<br>
+               <strong>Terület:</strong> Fót, Dunakeszi, Veresegyház, Őrbottyán, Szada</p>
+          </div>
+          <div class="card">
+            <form action="https://formspree.io/f/xpwyrara" method="POST" id="contactForm">
+              <label>Neved<input required type="text" name="name"></label>
+              <label>E-mail<input required type="email" name="email"></label>
+              <label>Telefonszám<input type="tel" name="phone"></label>
+              <label>Üzenet<textarea name="message"></textarea></label>
+              <button class="btn primary" type="submit">Üzenet elküldése</button>
+              <p id="formResponse" style="display:none; margin-top:10px; font-weight:bold;"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <footer>
         © <span id="year"></span> Hűvösotthon.hu
       </footer>
@@ -302,7 +180,47 @@
   </div>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Menü aktív
+    const links=document.querySelectorAll('nav a');
+    const sections=[...links].map(a=>document.querySelector(a.getAttribute('href')));
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const id='#'+e.target.id;
+          document.querySelector(`nav a[href="${id}"]`)?.classList.add('active');
+        }
+      })
+    },{threshold:.5});
+    sections.forEach(s=>s&&obs.observe(s));
+
+    // Dinamikus visszajelzések
+    (function(){
+      const cont=document.getElementById('reviews');
+      if(!cont) return;
+      const total=300; let loaded=0, batch=20;
+      const fn=['Bence','Boglárka','Dóra','Marcell','Máté','Eszter','Gábor','Zsófi','Ádám','Dani','Lilla','Anna'];
+      const towns=['Fót','Dunakeszi','Veresegyház','Őrbottyán','Szada'];
+      const comm=['Gyorsak és precízek!','Szép munka, udvariasak.','Pontos érkezés.','Szakértelem látszik.','Korrekt ár.'];
+      function star(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
+      function card(i){const d=document.createElement('div');d.className='person';d.innerHTML=`<div class="stars">${star(5)}</div><p>"${comm[i%comm.length]}"</p><div>${fn[i%fn.length]} – ${towns[i%towns.length]}</div>`;return d;}
+      function more(){for(let i=loaded;i<Math.min(loaded+batch,total);i++){cont.appendChild(card(i));}loaded+=batch;document.getElementById('reviewCount').textContent=`${Math.min(loaded,total)}/${total} értékelés`;if(loaded>=total)document.getElementById('moreReviews').style.display='none';}
+      document.getElementById('moreReviews').addEventListener('click',more);more();
+    })();
+
+    // Formspree visszajelzés
+    const form=document.getElementById('contactForm');
+    if(form){
+      form.addEventListener('submit',async function(e){
+        e.preventDefault();
+        const fd=new FormData(form);
+        const res=await fetch(form.action,{method:form.method,body:fd,headers:{'Accept':'application/json'}});
+        const msg=document.getElementById('formResponse');
+        if(res.ok){msg.style.display='block';msg.style.color='#39d2c0';msg.textContent='✅ Köszönjük! Üzenetedet elküldtük.';form.reset();}
+        else{msg.style.display='block';msg.style.color='#ff6464';msg.textContent='⚠️ Hiba történt, próbáld újra.';}
+      });
+    }
+    document.getElementById('year').textContent=new Date().getFullYear();
   </script>
 </body>
 </html>
