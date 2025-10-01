@@ -1,216 +1,308 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klíma Karbantartás - Professzionális Szolgáltatás</title>
-    <style>
-        /* Global styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        header {
-            background-color: #111;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 3.5em;
-            margin: 0;
-            font-weight: bold;
-        }
-        header p {
-            font-size: 1.5em;
-        }
-        nav {
-            background-color: #1e1e1e;
-            padding: 15px 0;
-            text-align: center;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2em;
-            margin: 0 20px;
-            padding: 10px 15px;
-        }
-        nav a:hover {
-            background-color: #2980b9;
-            color: white;
-            border-radius: 5px;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hűvösotthon – Klímaszerviz és karbantartás</title>
+  <meta name="description" content="Klímaberendezések tisztítása, karbantartása és szerelése. Átlátható árlista, gyors időpontfoglalás, megbízható szakemberek." />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root {
+      --bg: #1c1c1e;
+      --panel: #222;
+      --muted: #aaa;
+      --text: #e4e4e4;
+      --accent: #1e76a5;
+      --accent-2: #39d2c0;
+      --danger: #ff6464;
+      --shadow: 0 6px 24px rgba(0, 0, 0, .35), 0 2px 6px rgba(0, 0, 0, .25);
+    }
 
-        /* Section styles */
-        section {
-            padding: 60px 10%;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        h2 {
-            font-size: 2.8em;
-            color: #2980b9;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        .service {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-        }
-        .service div {
-            width: 48%;
-            background-color: #f7f7f7;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-        .service div:hover {
-            background-color: #2980b9;
-            color: white;
-        }
+    a:hover {
+      color: var(--accent-2);
+    }
 
-        .service h3 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
+    /* Topbar */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      background-color: rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-        .price {
-            font-size: 1.4em;
-            color: #2980b9;
-            margin-top: 15px;
-        }
+    .topbar .pill {
+      color: #fff;
+      padding: 8px 16px;
+      background-color: #444;
+      border-radius: 50px;
+      font-size: 14px;
+    }
 
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1.2em;
-            background-color: #f7f7f7;
-        }
+    /* Main Layout */
+    .wrap {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      min-height: 100vh;
+    }
 
-        .contact-form button {
-            background-color: #2980b9;
-            color: white;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.3em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    .sidebar {
+      background: #1c1c1e;
+      padding: 32px;
+      border-right: 1px solid #333;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
 
-        .contact-form button:hover {
-            background-color: #1e76a5;
-        }
+    .brand h1 {
+      color: var(--accent);
+      font-size: 24px;
+      margin-bottom: 32px;
+      font-weight: 600;
+    }
 
-        /* Footer */
-        footer {
-            background-color: #111;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-        footer a {
-            color: #2980b9;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    nav a {
+      color: #ccc;
+      padding: 14px 20px;
+      border-radius: 8px;
+      background-color: #2b2b2b;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+    nav a:hover,
+    nav a.active {
+      background-color: #444;
+      color: #fff;
+    }
 
-    </style>
+    /* Main Content */
+    main {
+      padding: 32px;
+      background: #111;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .hero .card {
+      background: var(--panel);
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta {
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-2);
+    }
+
+    /* Section Styling */
+    section {
+      margin-bottom: 60px;
+      padding: 40px 0;
+      border-bottom: 1px dashed #333;
+    }
+
+    .eyebrow {
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service {
+      background: var(--panel);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .pricing table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 12px;
+    }
+
+    .pricing th {
+      font-weight: bold;
+      color: #ccc;
+      text-align: left;
+      font-size: 16px;
+    }
+
+    .pricing td {
+      padding: 12px;
+      background-color: var(--panel);
+      color: var(--text);
+    }
+
+    .pricing td:hover {
+      background-color: #444;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      padding: 32px;
+      text-align: center;
+      background-color: #2a2a2a;
+      color: var(--muted);
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1>Klíma Karbantartás</h1>
-        <p>Professzionális karbantartás és javítás, hogy klímája mindig tökéletesen működjön!</p>
-    </header>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="pill">Nyitva: H–P 9–17</div>
+    <div class="pill">📧 huvosotthonkarbantartas@gmail.com</div>
+    <div class="pill">📞 +36 70 424 6417</div>
+  </div>
 
-    <nav>
-        <a href="#services">Szolgáltatások</a>
-        <a href="#pricing">Árak</a>
-        <a href="#contact">Kapcsolat</a>
-        <a href="#faq">FAQ</a>
-    </nav>
+  <div class="wrap">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Hűvösotthon.hu</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a class="active" href="#kezdolap">Kezdőlap</a></li>
+          <li><a href="#rolunk">Rólunk</a></li>
+          <li><a href="#szolgaltatasok">Szolgáltatások</a></li>
+          <li><a href="#csapat">Csapat</a></li>
+          <li><a href="#arlista">Árlista</a></li>
+          <li><a href="#visszajelzesek">Visszajelzések</a></li>
+          <li><a href="#kapcsolat">Kapcsolat</a></li>
+        </ul>
+      </nav>
+    </aside>
 
-    <section id="services">
-        <h2>Szolgáltatásaink</h2>
-        <div class="service">
-            <div>
-                <h3>Alap Klíma Karbantartás</h3>
-                <p>A klíma szűrőinek tisztítása, a hűtési teljesítmény ellenőrzése és egyéb alapvető karbantartási feladatok.</p>
-                <p class="price">Ár: 12,000 Ft</p>
-            </div>
-            <div>
-                <h3>Teljes Klíma Karbantartás</h3>
-                <p>Alap karbantartás, valamint belső alkatrészek, mint a ventilátorok és kompresszorok ellenőrzése.</p>
-                <p class="price">Ár: 18,000 Ft</p>
-            </div>
+    <!-- Main Content -->
+    <main>
+      <section id="kezdolap" class="hero">
+        <div class="card">
+          <span class="eyebrow">Klímaszerviz & Karbantartás</span>
+          <h2>Friss levegő, tiszta munkával.</h2>
+          <p>Professzionális klímatisztítás és karbantartás a legjobb árakon, gyors időpontokkal.</p>
+          <div class="cta">
+            <a class="btn" href="#kapcsolat">Időpontot kérek</a>
+            <a class="btn" href="#arlista">Árak megtekintése</a>
+          </div>
         </div>
-        <div class="service">
-            <div>
-                <h3>Klíma Telepítés</h3>
-                <p>Teljes körű klímaberendezés telepítése, a legjobb elhelyezés és beüzemelés biztosítása.</p>
-                <p class="price">Ár: 55,000 Ft-tól</p>
-            </div>
-            <div>
-                <h3>Klíma Javítás</h3>
-                <p>Szakszerű diagnosztika és javítás, hogy a klímája újra tökéletesen működjön.</p>
-                <p class="price">Ár: 10,000 Ft-tól</p>
-            </div>
+      </section>
+
+      <section id="rolunk">
+        <span class="eyebrow">Rólunk</span>
+        <h2>Miért válassz minket?</h2>
+        <p>Minden munkánkat magas szintű szakértelemmel végezzük, átlátható árakkal és gyors kiszolgálással.</p>
+      </section>
+
+      <section id="szolgaltatasok">
+        <span class="eyebrow">Szolgáltatásaink</span>
+        <h2>A leggyakoribb munkáink</h2>
+        <div class="grid-3">
+          <div class="service">
+            <h3>Split klíma tisztítás</h3>
+            <p>Beltéri és kültéri egység vegyszeres tisztítása.</p>
+          </div>
+          <div class="service">
+            <h3>Hőcserélő fertőtlenítés</h3>
+            <p>Baktérium- és gombaölő kezelés.</p>
+          </div>
+          <div class="service">
+            <h3>Átvizsgálás & diagnosztika</h3>
+            <p>Teljes körű állapotfelmérés és hibadiagnosztika.</p>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <section id="pricing">
-        <h2>Árak</h2>
-        <p>Szolgáltatásaink árai az alábbiak szerint alakulnak. Minden esetben a legjobb minőséget biztosítjuk, tiszta, precíz munkával!</p>
-    </section>
-
-    <section id="contact">
-        <h2>Kapcsolat</h2>
-        <p>Kérdése van, vagy szeretne időpontot egyeztetni? Töltse ki az alábbi űrlapot, és mi hamarosan válaszolunk Önnek!</p>
-        <div class="contact-form">
-            <form action="mailto:info@klimakarbantartas.hu" method="post" enctype="text/plain">
-                <label for="name">Név:</label>
-                <input type="text" id="name" name="name" required><br><br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
-                <label for="message">Üzenet:</label><br>
-                <textarea id="message" name="message" rows="5" required></textarea><br><br>
-                <button type="submit">Küldés</button>
-            </form>
+      <section id="arlista">
+        <span class="eyebrow">Árlista</span>
+        <h2>Átlátható árak</h2>
+        <div class="pricing">
+          <table>
+            <tr><td>Split klíma karbantartás (2,5 kW - 3,5 kW)</td><td>20 000 Ft</td></tr>
+            <tr><td>Split klíma karbantartás (≤ 5 kW)</td><td>25 000 Ft</td></tr>
+            <tr><td>Mobil klíma tisztítás 3,5 kW</td><td>30 000 Ft</td></tr>
+          </table>
         </div>
-    </section>
+      </section>
 
-    <section id="faq">
-        <h2>Gyakran Ismételt Kérdések</h2>
-        <h3>Miért fontos a klíma karbantartás?</h3>
-        <p>A karbantartás segít megakadályozni a meghibásodásokat és biztosítja, hogy a klíma optimálisan működjön, miközben hosszú élettartamot biztosít.</p>
-        <h3>Mikor végezzük el a karbantartást?</h3>
-        <p>A legjobb, ha a karbantartást évente legalább egyszer, de ajánlott a nyári szezon előtt elvégezni.</p>
-    </section>
+      <footer>
+        <p>© <span id="year"></span> Hűvösotthon.hu - Minden jog fenntartva</p>
+      </footer>
+    </main>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 Klíma Karbantartás | Minden jog fenntartva</p>
-        <p>Kapcsolat: <a href="mailto:info@klimakarbantartas.hu">info@klimakarbantartas.hu</a></p>
-    </footer>
+  <script>
+    // Dynamic year display
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
