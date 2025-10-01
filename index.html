@@ -96,7 +96,7 @@
     </aside>
 
     <main>
-      <!-- Kezdőlap, Rólunk, Szolgáltatások, Csapat, Árlista, Visszajelzések szekciók változatlanul maradnak -->
+      <!-- ... (a többi szekció változatlan) ... -->
 
       <section id="kapcsolat">
         <span class="eyebrow">Kapcsolat</span>
@@ -127,12 +127,12 @@
   </div>
 
   <script>
-    // Menü aktív
+    // Menü aktív (javított if)
     const links=document.querySelectorAll('nav a');
     const sections=[...links].map(a=>document.querySelector(a.getAttribute('href')));
     const obs=new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){
+        if(e.isIntersecting) {
           links.forEach(l=>l.classList.remove('active'));
           const id='#'+e.target.id;
           document.querySelector(`nav a[href="${id}"]`)?.classList.add('active');
@@ -141,7 +141,7 @@
     },{threshold:.5});
     sections.forEach(s=>s&&obs.observe(s));
 
-    // Dinamikus visszajelzések (változatlanul)
+    // Dinamikus visszajelzések
     (function(){
       const cont=document.getElementById('reviews');
       if(!cont) return;
