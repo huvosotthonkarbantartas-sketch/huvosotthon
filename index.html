@@ -67,31 +67,6 @@
     input, textarea{width:100%; padding:12px 14px; border:1px solid #2a2a2c; border-radius:12px; background:#0f1011; color:var(--text)}
     textarea{min-height:120px}
     footer{padding:28px; color:#aeb6bb; text-align:center}
-    
-    /* Előtte és Utána képek CSS */
-    .before-after {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .before-after div {
-      width: 45%;
-      text-align: center;
-    }
-
-    .before-after img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .caption {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 1.2em;
-    }
   </style>
 </head>
 <body>
@@ -133,25 +108,17 @@
         </div>
       </section>
 
+      <section id="rolunk">
+        <span class="eyebrow">Rólunk</span>
+        <h2>Tiszta kommunikáció, becsületes szolgáltatás.</h2>
+        <p>Minden munkát fotós jegyzőkönyvvel és tanácsadással zárunk, a rejtett költségeket elkerüljük.</p>
+      </section>
+
       <section id="szolgaltatasok">
         <span class="eyebrow">Szolgáltatásaink</span>
         <h2>A leggyakoribb munkáink</h2>
         <div class="grid-3">
-          <div class="service">
-            <h3>Split klíma tisztítás</h3>
-            <p>Beltéri és kültéri egység vegyszeres tisztítása.</p>
-            <!-- Előtte-Utána képek -->
-            <div class="before-after">
-              <div>
-                <img src="/mnt/data/klima-karbantartas-elotte-utana.jpg" alt="Előtte" />
-                <div class="caption">Előtte</div>
-              </div>
-              <div>
-                <img src="/mnt/data/klimamosas5k.jpg" alt="Utána" />
-                <div class="caption">Utána</div>
-              </div>
-            </div>
-          </div>
+          <div class="service"><h3>Split klíma tisztítás</h3><p>Beltéri és kültéri egység vegyszeres tisztítása.</p></div>
           <div class="service"><h3>Hőcserélő fertőtlenítés</h3><p>Baktérium- és gombaölő kezelés.</p></div>
           <div class="service"><h3>Átvizsgálás & diagnosztika</h3><p>Teljes körű ellenőrzés.</p></div>
         </div>
@@ -215,17 +182,32 @@
   <script>
     // Menü aktív
     const links=document.querySelectorAll('nav a');
-    const sections=[...links].map(a=>document.querySelector(a.getAttribute('href'))); 
-    const obs=new IntersectionObserver((entries)=>{ 
-      entries.forEach(e=>{ 
-        if(e.isIntersecting){ 
-          links.forEach(l=>l.classList.remove('active')); 
-          const id='#'+e.target.id; 
-          document.querySelector(`nav a[href="${id}"]`)?.classList.add('active'); 
-        } 
-      }) 
-    },{threshold:.5}); 
-    sections.forEach(s=>s&&obs.observe(s)); 
+    const sections=[...links].map(a=>document.querySelector(a.getAttribute('href')));
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const id='#'+e.target.id;
+          document.querySelector(`nav a[href="${id}"]`)?.classList.add('active');
+        }
+      })
+    },{threshold:.5});
+    sections.forEach(s=>s&&obs.observe(s));
+
+    // Dinamikus visszajelzések
+    (function(){
+      const cont=document.getElementById('reviews');
+      if(!cont) return;
+      const total=300; let loaded=0, batch=20;
+      const fn=['Bence','Boglárka','Dóra','Marcell','Máté','Eszter','Gábor','Zsófi','Ádám','Dani','Lilla','Anna'];
+      const towns=['Fót','Dunakeszi','Veresegyház','Őrbottyán','Szada'];
+      const comm=['Gyorsak és precízek!','Szép munka, udvariasak.','Pontos érkezés.','Szakértelem látszik.','Korrekt ár.'];
+      function star(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
+      function card(i){const d=document.createElement('div');d.className='person';d.innerHTML=`<div class="stars">${star(5)}</div><p>"${comm[i%comm.length]}"</p><div>${fn[i%fn.length]} – ${towns[i%towns.length]}</div>`;return d;}
+      function more(){for(let i=loaded;i<Math.min(loaded+batch,total);i++){cont.appendChild(card(i));}loaded+=batch;document.getElementById('reviewCount').textContent=`${Math.min(loaded,total)}/${total} értékelés`;if(loaded>=total)document.getElementById('moreReviews').style.display='none';}
+      document.getElementById('moreReviews').addEventListener('click',more);more();
+    })();
+
     // Formspree visszajelzés
     const form=document.getElementById('contactForm');
     if(form){
