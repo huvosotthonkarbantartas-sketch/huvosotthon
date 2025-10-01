@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professzionális légkondicionáló karbantartás, telepítés, hibajavítás és energiahatékonyság optimalizálása.">
+    <meta name="description" content="Profi légkondicionáló karbantartás, telepítés, hibajavítás és energiahatékonyság optimalizálása.">
     <title>Légkondi Karbantartás - Profi Szolgáltatás</title>
     <style>
         /* Alap stílusok */
@@ -11,14 +11,17 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #333;
+            color: #fff;
         }
 
         /* Fejléc */
         header {
-            background-color: #0077b5;
+            background-color: #1c1c1c;
             padding: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header .logo img {
@@ -28,70 +31,84 @@
         header nav ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
+            display: flex;
         }
 
         header nav ul li {
-            display: inline;
-            margin: 0 10px;
+            margin-left: 30px;
         }
 
         header nav ul li a {
-            color: white;
+            color: #00b5e2;
             text-decoration: none;
             font-weight: bold;
         }
 
         /* Hero szakasz */
         .hero {
-            background-color: #00b5e2;
+            background-image: url('https://via.placeholder.com/1920x800'); /* Használj egy megfelelő háttérképet */
+            background-size: cover;
             color: white;
-            padding: 50px 20px;
             text-align: center;
+            padding: 120px 20px;
         }
 
         .hero h1 {
-            font-size: 2.5em;
+            font-size: 3em;
+            margin: 0;
         }
 
-        .hero .cta-btn {
-            background-color: #ff6600;
-            padding: 10px 20px;
+        .hero p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        .cta-btn {
+            background-color: #00b5e2;
             color: white;
+            padding: 15px 30px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
-            margin-top: 20px;
         }
 
         /* Szolgáltatások */
         .services {
-            background-color: white;
+            background-color: #222;
             padding: 50px 20px;
             text-align: center;
         }
 
         .services h2 {
-            font-size: 2em;
+            font-size: 2.5em;
+            margin-bottom: 30px;
         }
 
         .service {
-            margin: 20px 0;
-        }
-
-        /* Rólunk */
-        .about {
-            background-color: #f4f4f4;
-            padding: 50px 20px;
+            display: inline-block;
+            width: 24%;
+            margin: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
             text-align: center;
         }
 
-        .about h2 {
-            font-size: 2em;
+        .service img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .service h3 {
+            font-size: 1.5em;
+            color: #00b5e2;
         }
 
         /* Kapcsolat */
         .contact {
-            background-color: #0077b5;
+            background-color: #1c1c1c;
             color: white;
             padding: 50px 20px;
             text-align: center;
@@ -99,30 +116,31 @@
 
         .contact form {
             display: inline-block;
-            text-align: left;
-            background-color: white;
+            background-color: #333;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 60%;
         }
 
         .contact form label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .contact form input, .contact form textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
+            padding: 15px;
+            margin: 10px 0;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid #555;
         }
 
         .contact form button {
-            background-color: #ff6600;
-            padding: 10px 20px;
+            background-color: #00b5e2;
             color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -130,7 +148,7 @@
 
         /* Lábléc */
         footer {
-            background-color: #333;
+            background-color: #111;
             color: white;
             text-align: center;
             padding: 20px;
@@ -147,11 +165,11 @@
     <!-- Fejléc -->
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Légkondi Karbantartó Cég Logo">
+            <img src="logo.png" alt="Légkondi Karbantartás Logo">
         </div>
         <nav>
             <ul>
-                <li><a href="#home">Főoldal</a></li>
+                <li><a href="#home">Kezdőlap</a></li>
                 <li><a href="#services">Szolgáltatások</a></li>
                 <li><a href="#about">Rólunk</a></li>
                 <li><a href="#contact">Kapcsolat</a></li>
@@ -161,38 +179,34 @@
 
     <!-- Hero szakasz -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Profi légkondicionáló karbantartás</h1>
-            <p>Maximális teljesítmény, minimális energiafogyasztás. Bízza ránk légkondicionálója karbantartását!</p>
-            <a href="#contact" class="cta-btn">Kérjen ajánlatot!</a>
-        </div>
+        <h1>Minden otthonban hűvös kényelem</h1>
+        <p>Üdvözöljük a Légkondi Karbantartás oldalán! A legjobb minőségű szolgáltatások, amelyek biztosítják otthona hűvös légkörét.</p>
+        <a href="#contact" class="cta-btn">Lépj velünk kapcsolatba!</a>
     </section>
 
     <!-- Szolgáltatások -->
     <section id="services" class="services">
         <h2>Szolgáltatásaink</h2>
         <div class="service">
-            <h3>Karbantartás és Tisztítás</h3>
-            <p>Hűtőközeg cseréje, szűrők tisztítása, ventilátor karbantartás, rendszerellenőrzés.</p>
+            <img src="https://via.placeholder.com/400x250" alt="Karbantartás">
+            <h3>Karbantartás</h3>
+            <p>Éves karbantartás, szűrők tisztítása, hűtőközeg csere és sok más.</p>
         </div>
         <div class="service">
-            <h3>Hibajavítás és Diagnosztika</h3>
-            <p>A légkondicionálók diagnosztikai vizsgálata, hibák gyors és szakszerű elhárítása.</p>
+            <img src="https://via.placeholder.com/400x250" alt="Telepítés">
+            <h3>Telepítés</h3>
+            <p>Új légkondicionáló rendszerek telepítése és beüzemelése.</p>
         </div>
         <div class="service">
-            <h3>Új Légkondi Telepítése</h3>
-            <p>Modern, energiahatékony légkondicionáló rendszerek telepítése és beüzemelése.</p>
+            <img src="https://via.placeholder.com/400x250" alt="Hibajavítás">
+            <h3>Hibajavítás</h3>
+            <p>Gyors és hatékony hibajavítási szolgáltatás minden típusú légkondicionálóhoz.</p>
         </div>
         <div class="service">
-            <h3>Energiahatékonyság Optimalizálása</h3>
-            <p>Energiatakarékos megoldások, hogy csökkentse a fogyasztást és növelje a hatékonyságot.</p>
+            <img src="https://via.placeholder.com/400x250" alt="Energiahatékonyság">
+            <h3>Energiahatékonyság</h3>
+            <p>Optimalizáljuk légkondicionálója teljesítményét, hogy spóroljon az energiával.</p>
         </div>
-    </section>
-
-    <!-- Rólunk -->
-    <section id="about" class="about">
-        <h2>Rólunk</h2>
-        <p>Miért válassza szolgáltatásainkat? Több éves tapasztalattal rendelkezünk a légkondicionálók karbantartásában és telepítésében, így biztos lehet benne, hogy készüléke mindig kiváló állapotban lesz.</p>
     </section>
 
     <!-- Kapcsolat -->
@@ -214,12 +228,10 @@
 
     <!-- Lábléc -->
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 Légkondi Karbantartás. Minden jog fenntartva.</p>
-            <div class="social">
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-            </div>
+        <p>&copy; 2025 Légkondi Karbantartás. Minden jog fenntartva.</p>
+        <div class="social">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
         </div>
     </footer>
 </body>
