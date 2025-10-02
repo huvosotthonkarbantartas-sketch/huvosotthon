@@ -90,6 +90,7 @@
           <li><a href="#csapat">Csapat</a></li>
           <li><a href="#arlista">Árlista</a></li>
           <li><a href="#visszajelzesek">Visszajelzések</a></li>
+          <li><a href="#regisztracio">Regisztráció</a></li>
           <li><a href="#kapcsolat">Kapcsolat</a></li>
         </ul>
       </nav>
@@ -157,6 +158,24 @@
         <p id="reviewCount" class="note"></p>
       </section>
 
+      <!-- Regisztráció -->
+      <section id="regisztracio">
+        <span class="eyebrow">Regisztráció</span>
+        <h2>Hozz létre fiókot</h2>
+        <div class="contact">
+          <div class="card">
+            <form action="https://formspree.io/f/xpwyrara" method="POST" id="registerForm">
+              <label>Felhasználónév:<input required type="text" name="username"></label>
+              <label>E-mail címed:<input required type="email" name="email"></label>
+              <label>Jelszó:<input required type="password" name="password" minlength="6"></label>
+              <label>Jelszó megerősítése:<input required type="password" name="password2" minlength="6"></label>
+              <button class="btn primary" type="submit">Regisztráció</button>
+              <p id="registerResponse" style="display:none; margin-top:10px; font-weight:bold;"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <!-- Kapcsolat -->
       <section id="kapcsolat">
         <span class="eyebrow">Kapcsolat</span>
@@ -221,7 +240,7 @@
       document.getElementById('moreReviews').addEventListener('click',more);more();
     })();
 
-    // Formspree visszajelzés
+    // Formspree visszajelzés (Kapcsolat)
     const form=document.getElementById('contactForm');
     if(form){
       form.addEventListener('submit',async function(e){
@@ -241,7 +260,6 @@
         }
       });
     }
-    document.getElementById('year').textContent=new Date().getFullYear();
-  </script>
-</body>
-</html>
+
+    // Regisztráció form kezelése
+    const regForm = document.getElementById
