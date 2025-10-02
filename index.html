@@ -183,48 +183,27 @@
     });},{threshold:0.4});
     sections.forEach(section=>observer.observe(section));
 
-    // Dinamikus visszajelzések - életszerű, fix városokkal
+    // Dinamikus visszajelzések
     (function(){
       const cont=document.getElementById('reviews');
       if(!cont) return;
-      const total=40; let loaded=0, batch=5;
-      const fn=['Bence','Boglárka','Dóra','Marcell','Máté','Eszter','Gábor','Anna','Zsófi','Dani',
-                'Lilla','András','Péter','Kata','Réka','Balázs','Csilla','Áron','Tamás','Nóri',
-                'Levente','Sára','Márton','Vivien','Bálint','Zoltán','Henrietta','Fanni','Gergő','Orsi'];
-      const towns=['Fót','Szada','Gödöllő','Veresegyház','Dunakeszi'];
-      const comm=[
-        'Gyorsan érkeztek, minden rendben zajlott.',
-        'Nagyon alapos tisztítást végeztek, elégedett vagyok.',
-        'Kedves és segítőkész szakemberek.',
-        'Pontos időben jöttek, nem kellett várnom.',
-        'Megbízható csapat, korrekt árak.',
-        'Minden kérdésemre válaszoltak, nagyon türelmesek.',
-        'A klíma most újra hibátlanul működik!',
-        'Részletesen elmagyarázták a karbantartást.',
-        'Rugalmasak voltak az időpont egyeztetésnél.',
-        'Gyors és tiszta munkát végeztek.',
-        'Szimpatikus szakember, biztos hívom máskor is.',
-        'Precízek és figyelmesek voltak.',
-        'Kellemes kommunikáció, korrekt szolgáltatás.',
-        'Megbízható cég, csak ajánlani tudom.',
-        'Minden flottul ment, teljesen elégedett vagyok.'
-      ];
+      const total=30; let loaded=0, batch=5;
+      const fn=['Bence','Boglárka','Dóra','Marcell','Máté','Eszter','Gábor','Anna','Zsófi','Dani'];
+      const towns=['Fót','Dunakeszi','Veresegyház','Őrbottyán','Szada'];
+      const comm=['Gyorsak és precízek!','Szép munka, udvariasak.','Pontos érkezés.','Szakértelem látszik.','Korrekt ár.'];
       function star(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
       function card(i){
         const d=document.createElement('div');
         d.className='person';
-        const stars = Math.random()>0.2 ? 5 : 4; // 80% 5 csillag, 20% 4 csillag
-        d.innerHTML=`
-          <div class="stars">${star(stars)}</div>
-          <p>"${comm[Math.floor(Math.random()*comm.length)]}"</p>
-          <div><strong>${fn[Math.floor(Math.random()*fn.length)]}</strong> – ${towns[Math.floor(Math.random()*towns.length)]}</div>
-        `;
+        d.innerHTML=`<div class="stars">${star(5)}</div>
+                     <p>"${comm[i%comm.length]}"</p>
+                     <div>${fn[i%fn.length]} – ${towns[i%towns.length]}</div>`;
         return d;
       }
       function more(){
         for(let i=loaded;i<Math.min(loaded+batch,total);i++){cont.appendChild(card(i));}
         loaded+=batch;
-        document.getElementById('reviewCount').textContent=\`\${Math.min(loaded,total)}/\${total} értékelés\`;
+        document.getElementById('reviewCount').textContent=`${Math.min(loaded,total)}/${total} értékelés`;
         if(loaded>=total)document.getElementById('moreReviews').style.display='none';
       }
       document.getElementById('moreReviews').addEventListener('click',more);
