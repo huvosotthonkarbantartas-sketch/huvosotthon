@@ -174,15 +174,18 @@
       <section id="kapcsolat"><span class="eyebrow">Kapcsolat</span>
         <h2>Kérj ajánlatot vagy időpontot</h2>
         <div class="contact">
-          <div class="card"><p><strong>Telefon:</strong> +36 70 424 6417<br><strong>Email:</strong> huvosotthonkarbantartas@gmail.com<br><strong>Terület:</strong> Fót, Dunakeszi, Veresegyház, Őrbottyán, Szada</p></div>
           <div class="card">
-            <form action="https://formspree.io/f/xovkwdza" method="POST" id="contactForm">
+            <p><strong>Telefon:</strong> +36 70 424 6417<br>
+               <strong>Email:</strong> huvosotthonkarbantartas@gmail.com<br>
+               <strong>Terület:</strong> Fót, Dunakeszi, Veresegyház, Őrbottyán, Szada</p>
+          </div>
+          <div class="card">
+            <form action="mail.php" method="POST" id="contactForm">
               <label>Neved:<input required type="text" name="name"></label>
               <label>E-mail címed:<input required type="email" name="email"></label>
               <label>Telefonszámod:<input type="tel" name="phone"></label>
               <label>Üzeneted:<textarea name="message"></textarea></label>
               <button class="btn primary" type="submit">Üzenet elküldése</button>
-              <p id="formResponse" style="display:none; margin-top:10px; font-weight:bold;"></p>
             </form>
           </div>
         </div>
@@ -199,31 +202,57 @@
     const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const id='#'+e.target.id;const active=document.querySelector(`nav a[href="${id}"]`);if(active)active.classList.add('active');}});},{threshold:0.4});
     sections.forEach(s=>observer.observe(s));
 
-    // Visszajelzések demo
-    (function(){const cont=document.getElementById('reviews');if(!cont)return;const total=30;let loaded=0,batch=5;
-      const fn=['Bence','Boglárka','Dóra','Marcell','Máté','Eszter'];const towns=['Fót','Dunakeszi','Veresegyház'];const comm=['Gyorsak és precízek!','Udvariasak.','Korrekt ár.'];
-      function star(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
-      function card(i){const d=document.createElement('div');d.className='person';d.innerHTML=`<div class="stars">${star(5)}</div><p>"${comm[i%comm.length]}"</p><div>${fn[i%fn.length]} – ${towns[i%towns.length]}</div>`;return d;}
-      function more(){for(let i=loaded;i<Math.min(loaded+batch,total);i++){cont.appendChild(card(i));}loaded+=batch;document.getElementById('reviewCount').textContent=`${Math.min(loaded,total)}/${total} értékelés`;if(loaded>=total)document.getElementById('moreReviews').style.display='none';}
-      document.getElementById('moreReviews').addEventListener('click',more);more();
-    })();
-
-    // Kapcsolat form (Formspree)
-    const form=document.getElementById('contactForm');
-    if(form){
-      form.addEventListener('submit',async function(e){
-        e.preventDefault();
-        const fd=new FormData(form);
-        const res=await fetch(form.action,{method:form.method,body:fd,headers:{'Accept':'application/json'}});
-        const msg=document.getElementById('formResponse');
-        if(res.ok){msg.style.display='block';msg.style.color='#39d2c0';msg.textContent='✅ Üzeneted elküldve!';form.reset();}
-        else{msg.style.display='block';msg.style.color='#ff6464';msg.textContent='⚠️ Hiba történt, próbáld újra.';}
-      });
-    }
-
     // Regisztráció localStorage
     const regForm=document.getElementById('registerForm');
     if(regForm){
       regForm.addEventListener('submit',function(e){
         e.preventDefault();
-        const uname=regForm.username.value
+        const uname=regForm.username.value;
+        const email=regForm.email.value;
+        const phone=regForm.phone.value;
+        const pw1=regForm.password.value;
+        const pw2=regForm.password2.value;
+        const msg=document.getElementById('registerResponse');
+        if(pw1!==pw2){msg.style.display='block';msg.style.color='red';msg.textContent='⚠️ A jelszavak nem egyeznek!';return;}
+        const user={username:uname,email:email,phone:phone,password:pw1};
+        localStorage.setItem('user',JSON.stringify(user));
+        msg.style.display='block';msg.style.color='green';msg.textContent='✅ Sikeres regisztráció! Most már beléphetsz.';regForm.reset();
+      });
+    }
+
+    // Belépés
+    const loginForm=document.getElementById('loginForm');
+    if(loginForm){
+      loginForm.addEventListener('submit',function(e){
+        e.preventDefault();
+        const email=loginForm.email.value;
+        const pw=loginForm.password.value;
+        const msg=document.getElementById('loginResponse');
+        const user=JSON.parse(localStorage.getItem('user'));
+        if(user&&user.email===email&&user.password===pw){
+          msg.style.display='block';msg.style.color='green';msg.textContent='✅ Belépés sikeres!';
+          showProfile(user);
+        }else{
+          msg.style.display='block';msg.style.color='red';msg.textContent='⚠️ Hibás email vagy jelszó!';
+        }
+      });
+    }
+
+    function showProfile(user){
+      document.getElementById('belepes').style.display='none';
+      document.getElementById('profil').style.display='block';
+      document.getElementById('profName').textContent=user.username;
+      document.getElementById('profEmail').textContent=user.email;
+      document.getElementById('profPhone').textContent=user.phone;
+    }
+
+    const logoutBtn=document.getElementById('logoutBtn');
+    if(logoutBtn){
+      logoutBtn.addEventListener('click',function(){
+        document.getElementById('profil').style.display='none';
+        document.getElementById('belepes').style.display='block';
+      });
+    }
+
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script
