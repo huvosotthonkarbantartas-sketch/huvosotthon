@@ -7,66 +7,43 @@
   <meta name="description" content="Klímaberendezések tisztítása, karbantartása és szerelése. Átlátható árlista, gyors időpontfoglalás, megbízható szakemberek." />
   <link rel="icon" href="favicon.ico" />
   <style>
-    :root{
-      --bg:#0f0f10;
-      --panel:#151516;
-      --muted:#9aa3a7;
-      --text:#e7ecef;
-      --accent:#39d2c0;
-      --accent-2:#2cb09f;
-      --danger:#ff6464;
-      --shadow:0 6px 24px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.25);
-    }
+    :root{--bg:#0f0f10;--panel:#151516;--muted:#9aa3a7;--text:#e7ecef;
+      --accent:#39d2c0;--accent-2:#2cb09f;--danger:#ff6464;
+      --shadow:0 6px 24px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.25);}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0; background:radial-gradient(1200px 1200px at 10% -10%, #18191b 0%, var(--bg) 45%), var(--bg);
-      color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
-    a{color:var(--accent); text-decoration:none}
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      display:flex; gap:16px; justify-content:flex-end; align-items:center;
-      padding:8px 16px; background:rgba(10,10,11,.7); backdrop-filter:saturate(160%) blur(10px);
-      border-bottom:1px solid #222;
-    }
-    .pill{display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #2a2a2c; border-radius:999px; color:#cfd6da}
-    .wrap{display:grid; grid-template-columns: 260px 1fr; min-height:100svh}
-    .sidebar{
-      position:sticky; top:52px; height:calc(100svh - 52px);
-      padding:28px 20px; border-right:1px solid #1e1f21; background:linear-gradient(180deg, #131415 0%, #121314 100%);
-    }
-    .brand{display:flex; align-items:center; gap:12px; margin-bottom:28px}
-    .brand h1{font-size:20px; margin:0}
-    nav ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px}
-    nav a{display:block; padding:10px 12px; border-radius:10px; color:#cfd6da; border:1px solid transparent}
-    nav a:hover, nav a.active{background:#161718; border-color:#2a2a2c; color:var(--text)}
+    body{margin:0;background:radial-gradient(1200px 1200px at 10% -10%,#18191b 0%,var(--bg) 45%),var(--bg);
+      color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:var(--accent);text-decoration:none}
+    .topbar{position:sticky;top:0;z-index:50;display:flex;gap:16px;justify-content:flex-end;align-items:center;
+      padding:8px 16px;background:rgba(10,10,11,.7);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid #222;}
+    .pill{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid #2a2a2c;border-radius:999px;color:#cfd6da}
+    .wrap{display:grid;grid-template-columns:260px 1fr;min-height:100svh}
+    .sidebar{position:sticky;top:52px;height:calc(100svh - 52px);padding:28px 20px;border-right:1px solid #1e1f21;
+      background:linear-gradient(180deg,#131415 0%,#121314 100%);}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+    .brand h1{font-size:20px;margin:0}
+    nav ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+    nav a{display:block;padding:10px 12px;border-radius:10px;color:#cfd6da;border:1px solid transparent}
+    nav a:hover,nav a.active{background:#161718;border-color:#2a2a2c;color:var(--text)}
     main{padding:28px min(5vw,48px)}
-    section{padding:48px 0; border-bottom:1px dashed #242527}
-    .eyebrow{letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-size:12px}
-    h2{font-size:34px; line-height:1.15; margin:.2em 0 .6em}
+    section{padding:48px 0;border-bottom:1px dashed #242527}
+    .eyebrow{letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-size:12px}
+    h2{font-size:34px;line-height:1.15;margin:.2em 0 .6em}
     p{color:#c9d2d6}
-    .hero{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center}
-    .hero .card{padding:24px; background:var(--panel); border:1px solid #252629; border-radius:16px; box-shadow:var(--shadow)}
-    .cta{display:flex; gap:12px; margin-top:18px}
-    .btn{padding:10px 14px; border-radius:12px; border:1px solid #2a2a2c; background:#1a1b1d; color:#fff; cursor:pointer}
-    .btn.primary{background:linear-gradient(180deg, var(--accent), var(--accent-2)); color:#0a1114; font-weight:600}
-    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-    .service{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
-    .pricing{display:grid; grid-template-columns: 1.1fr .9fr; gap:24px}
-    .table{width:100%; border-collapse:separate; border-spacing:0 10px}
-    .table th{font-weight:600; color:#cfd6da; text-align:left; font-size:14px}
-    .table td, .table th{padding:14px 16px; border-top:1px solid #2b2d2f; border-bottom:1px solid #2b2d2f; background:#131415}
-    .note{font-size:14px; color:#9aa3a7; margin-top:8px}
-    .brands{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
-    .team{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
-    .person{background:#141516; border:1px solid #242527; border-radius:14px; padding:16px}
-    .contact{display:grid; grid-template-columns: 1fr 1fr; gap:24px}
-    .card{padding:18px; background:#141516; border:1px solid #242527; border-radius:14px}
-    form{display:grid; gap:12px}
-    input, textarea{width:100%; padding:12px 14px; border:1px solid #2a2a2c; border-radius:12px; background:#0f1011; color:var(--text)}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero .card{padding:24px;background:var(--panel);border:1px solid #252629;border-radius:16px;box-shadow:var(--shadow)}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:10px 14px;border-radius:12px;border:1px solid #2a2a2c;background:#1a1b1d;color:#fff;cursor:pointer}
+    .btn.primary{background:linear-gradient(180deg,var(--accent),var(--accent-2));color:#0a1114;font-weight:600}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service,.person,.card{padding:18px;background:#141516;border:1px solid #242527;border-radius:14px}
+    .team{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .contact{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    form{display:grid;gap:12px}
+    input,textarea{width:100%;padding:12px 14px;border:1px solid #2a2a2c;border-radius:12px;background:#0f1011;color:var(--text)}
     textarea{min-height:120px}
-    footer{padding:28px; color:#aeb6bb; text-align:center}
+    footer{padding:28px;color:#aeb6bb;text-align:center}
   </style>
 </head>
 <body>
@@ -79,9 +56,7 @@
 
   <div class="wrap">
     <aside class="sidebar">
-      <div class="brand">
-        <h1>Hűvösotthon.hu</h1>
-      </div>
+      <div class="brand"><h1>Hűvösotthon.hu</h1></div>
       <nav id="mainNav">
         <ul>
           <li><a class="active" href="#kezdolap">Kezdőlap</a></li>
@@ -91,6 +66,8 @@
           <li><a href="#arlista">Árlista</a></li>
           <li><a href="#visszajelzesek">Visszajelzések</a></li>
           <li><a href="#regisztracio">Regisztráció</a></li>
+          <li><a href="#belepes">Belépés</a></li>
+          <li><a href="#profil">Profil</a></li>
           <li><a href="#kapcsolat">Kapcsolat</a></li>
         </ul>
       </nav>
@@ -111,16 +88,10 @@
       </section>
 
       <!-- Rólunk -->
-      <section id="rolunk">
-        <span class="eyebrow">Rólunk</span>
-        <h2>Tiszta kommunikáció, becsületes szolgáltatás.</h2>
-        <p>Minden munkát fotós jegyzőkönyvvel és tanácsadással zárunk, a rejtett költségeket elkerüljük.</p>
-      </section>
+      <section id="rolunk"><span class="eyebrow">Rólunk</span><h2>Tiszta kommunikáció, becsületes szolgáltatás.</h2><p>Minden munkát fotós jegyzőkönyvvel és tanácsadással zárunk, a rejtett költségeket elkerüljük.</p></section>
 
       <!-- Szolgáltatások -->
-      <section id="szolgaltatasok">
-        <span class="eyebrow">Szolgáltatásaink</span>
-        <h2>A leggyakoribb munkáink</h2>
+      <section id="szolgaltatasok"><span class="eyebrow">Szolgáltatásaink</span><h2>A leggyakoribb munkáink</h2>
         <div class="grid-3">
           <div class="service"><h3>Split klíma tisztítás</h3><p>Beltéri és kültéri egység vegyszeres tisztítása.</p></div>
           <div class="service"><h3>Hőcserélő fertőtlenítés</h3><p>Baktérium- és gombaölő kezelés.</p></div>
@@ -129,9 +100,7 @@
       </section>
 
       <!-- Csapat -->
-      <section id="csapat">
-        <span class="eyebrow">Csapat</span>
-        <h2>Tapasztalt szakemberek</h2>
+      <section id="csapat"><span class="eyebrow">Csapat</span><h2>Tapasztalt szakemberek</h2>
         <div class="team">
           <div class="person"><strong>Izbéki Bence</strong> Szervizes – tisztítás, hibaelhárítás, üzembe helyezés.</div>
           <div class="person"><strong>Répássi Boglárka</strong> Ügyfélkapcsolat – időpontok, ajánlatok, számlázás.</div>
@@ -139,9 +108,7 @@
       </section>
 
       <!-- Árlista -->
-      <section id="arlista">
-        <span class="eyebrow">Árlista</span>
-        <h2>Átlátható árak</h2>
+      <section id="arlista"><span class="eyebrow">Árlista</span><h2>Átlátható árak</h2>
         <table class="table">
           <tr><td>Split klíma karbantartás (2,5 kW - 3,5 kW, kültéri + beltéri)</td><td>20 000 Ft</td></tr>
           <tr><td>Split klíma karbantartás (≤ 5 kW, kültéri + beltéri)</td><td>25 000 Ft</td></tr>
@@ -150,44 +117,53 @@
       </section>
 
       <!-- Visszajelzések -->
-      <section id="visszajelzesek">
-        <span class="eyebrow">Visszajelzések</span>
-        <h2>Ügyfeleink mondták</h2>
-        <div id="reviews"></div>
-        <button class="btn" id="moreReviews">Továbbiak betöltése</button>
-        <p id="reviewCount" class="note"></p>
+      <section id="visszajelzesek"><span class="eyebrow">Visszajelzések</span><h2>Ügyfeleink mondták</h2>
+        <div id="reviews"></div><button class="btn" id="moreReviews">Továbbiak betöltése</button><p id="reviewCount" class="note"></p>
       </section>
 
       <!-- Regisztráció -->
-      <section id="regisztracio">
-        <span class="eyebrow">Regisztráció</span>
-        <h2>Hozz létre fiókot</h2>
-        <div class="contact">
-          <div class="card">
-            <form action="https://formspree.io/f/xpwyrara" method="POST" id="registerForm">
-              <label>Felhasználónév:<input required type="text" name="username"></label>
-              <label>E-mail címed:<input required type="email" name="email"></label>
-              <label>Jelszó:<input required type="password" name="password" minlength="6"></label>
-              <label>Jelszó megerősítése:<input required type="password" name="password2" minlength="6"></label>
-              <button class="btn primary" type="submit">Regisztráció</button>
-              <p id="registerResponse" style="display:none; margin-top:10px; font-weight:bold;"></p>
-            </form>
-          </div>
+      <section id="regisztracio"><span class="eyebrow">Regisztráció</span><h2>Hozz létre fiókot</h2>
+        <div class="contact"><div class="card">
+          <form action="https://formspree.io/f/xovkwdza" method="POST" id="registerForm">
+            <label>Felhasználónév:<input required type="text" name="username"></label>
+            <label>E-mail címed:<input required type="email" name="email"></label>
+            <label>Telefonszám:<input type="tel" name="phone"></label>
+            <label>Jelszó:<input required type="password" name="password" minlength="6"></label>
+            <label>Jelszó megerősítése:<input required type="password" name="password2" minlength="6"></label>
+            <button class="btn primary" type="submit">Regisztráció</button>
+            <p id="registerResponse" style="display:none; margin-top:10px; font-weight:bold;"></p>
+          </form>
+        </div></div>
+      </section>
+
+      <!-- Belépés -->
+      <section id="belepes"><span class="eyebrow">Belépés</span><h2>Lépj be a fiókodba</h2>
+        <div class="contact"><div class="card">
+          <form id="loginForm">
+            <label>E-mail:<input required type="email" name="email"></label>
+            <label>Jelszó:<input required type="password" name="password"></label>
+            <button class="btn primary" type="submit">Belépés</button>
+            <p id="loginResponse" style="display:none; margin-top:10px; font-weight:bold;"></p>
+          </form>
+        </div></div>
+      </section>
+
+      <!-- Profil -->
+      <section id="profil" style="display:none;"><span class="eyebrow">Profil</span><h2>Saját adataid</h2>
+        <div class="card">
+          <p><strong>Név:</strong> <span id="profName"></span></p>
+          <p><strong>Email:</strong> <span id="profEmail"></span></p>
+          <p><strong>Telefon:</strong> <span id="profPhone"></span></p>
+          <button class="btn" id="logoutBtn">Kijelentkezés</button>
         </div>
       </section>
 
       <!-- Kapcsolat -->
-      <section id="kapcsolat">
-        <span class="eyebrow">Kapcsolat</span>
-        <h2>Kérj ajánlatot vagy időpontot</h2>
+      <section id="kapcsolat"><span class="eyebrow">Kapcsolat</span><h2>Kérj ajánlatot vagy időpontot</h2>
         <div class="contact">
+          <div class="card"><p><strong>Telefon:</strong> +36 70 424 6417<br><strong>Email:</strong> huvosotthonkarbantartas@gmail.com<br><strong>Terület:</strong> Fót, Dunakeszi, Veresegyház, Őrbottyán, Szada</p></div>
           <div class="card">
-            <p><strong>Telefon:</strong> +36 70 424 6417<br>
-               <strong>Email:</strong> huvosotthonkarbantartas@gmail.com<br>
-               <strong>Terület:</strong> Fót, Dunakeszi, Veresegyház, Őrbottyán, Szada</p>
-          </div>
-          <div class="card">
-            <form action="https://formspree.io/f/xpwyrara" method="POST" id="contactForm">
+            <form action="https://formspree.io/f/xovkwdza" method="POST" id="contactForm">
               <label>Neved:<input required type="text" name="name"></label>
               <label>E-mail címed:<input required type="email" name="email"></label>
               <label>Telefonszámod:<input type="tel" name="phone"></label>
@@ -199,67 +175,54 @@
         </div>
       </section>
 
-      <footer>
-        © <span id="year"></span> Hűvösotthon.hu
-      </footer>
+      <footer>© <span id="year"></span> Hűvösotthon.hu</footer>
     </main>
   </div>
 
   <script>
-    // Menü aktív (javított verzió)
-    const links = document.querySelectorAll('nav a');
-    const sections = Array.from(links).map(link => {
-      const id = link.getAttribute('href');
-      return document.querySelector(id);
-    }).filter(Boolean);
+    // Menü aktív
+    const links=document.querySelectorAll('nav a');
+    const sections=Array.from(links).map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const id='#'+e.target.id;const active=document.querySelector(`nav a[href="${id}"]`);if(active)active.classList.add('active');}});},{threshold:0.4});
+    sections.forEach(s=>observer.observe(s));
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          const id = '#' + entry.target.id;
-          const activeLink = document.querySelector(`nav a[href="${id}"]`);
-          if (activeLink) activeLink.classList.add('active');
-        }
-      });
-    }, { threshold: 0.4 });
-
-    sections.forEach(section => observer.observe(section));
-
-    // Dinamikus visszajelzések
-    (function(){
-      const cont=document.getElementById('reviews');
-      if(!cont) return;
-      const total=300; let loaded=0, batch=20;
-      const fn=['Bence','Boglárka','Dóra','Marcell','Máté','Eszter','Gábor','Zsófi','Ádám','Dani','Lilla','Anna'];
-      const towns=['Fót','Dunakeszi','Veresegyház','Őrbottyán','Szada'];
-      const comm=['Gyorsak és precízek!','Szép munka, udvariasak.','Pontos érkezés.','Szakértelem látszik.','Korrekt ár.'];
-      function star(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
-      function card(i){const d=document.createElement('div');d.className='person';d.innerHTML=`<div class="stars">${star(5)}</div><p>"${comm[i%comm.length]}"</p><div>${fn[i%fn.length]} – ${towns[i%towns.length]}</div>`;return d;}
-      function more(){for(let i=loaded;i<Math.min(loaded+batch,total);i++){cont.appendChild(card(i));}loaded+=batch;document.getElementById('reviewCount').textContent=`${Math.min(loaded,total)}/${total} értékelés`;if(loaded>=total)document.getElementById('moreReviews').style.display='none';}
-      document.getElementById('moreReviews').addEventListener('click',more);more();
-    })();
-
-    // Formspree visszajelzés (Kapcsolat)
-    const form=document.getElementById('contactForm');
-    if(form){
-      form.addEventListener('submit',async function(e){
+    // Regisztráció
+    const regForm=document.getElementById('registerForm');
+    if(regForm){
+      regForm.addEventListener('submit',async function(e){
         e.preventDefault();
-        const fd=new FormData(form);
-        const res=await fetch(form.action,{method:form.method,body:fd,headers:{'Accept':'application/json'}});
-        const msg=document.getElementById('formResponse');
-        if(res.ok){
-          msg.style.display='block';
-          msg.style.color='#39d2c0';
-          msg.textContent='✅ Köszönjük! Üzenetedet elküldtük.';
-          form.reset();
-        } else {
-          msg.style.display='block';
-          msg.style.color='#ff6464';
-          msg.textContent='⚠️ Hiba történt, próbáld újra.';
+        const uname=regForm.username.value;
+        const email=regForm.email.value;
+        const phone=regForm.phone.value;
+        const pw1=regForm.password.value;
+        const pw2=regForm.password2.value;
+        const msg=document.getElementById('registerResponse');
+        if(pw1!==pw2){
+          msg.style.display='block';msg.style.color='#ff6464';
+          msg.textContent='⚠️ A jelszavak nem egyeznek!';return;
         }
+        // mentés localStorage-ba
+        const user={username:uname,email:email,phone:phone,password:pw1};
+        localStorage.setItem('user',JSON.stringify(user));
+        // elküldés Formspree-re
+        const fd=new FormData(regForm);
+        const res=await fetch(regForm.action,{method:regForm.method,body:fd,headers:{'Accept':'application/json'}});
+        msg.style.display='block';
+        if(res.ok){msg.style.color='#39d2c0';msg.textContent='✅ Sikeres regisztráció! Most már beléphetsz.';regForm.reset();}
+        else{msg.style.color='#ff6464';msg.textContent='⚠️ Hiba történt a regisztrációnál.';}
       });
     }
 
-    // Regisztráció form kezelése
-    const regForm = document.getElementById
+    // Belépés
+    const loginForm=document.getElementById('loginForm');
+    if(loginForm){
+      loginForm.addEventListener('submit',function(e){
+        e.preventDefault();
+        const email=loginForm.email.value;
+        const pw=loginForm.password.value;
+        const msg=document.getElementById('loginResponse');
+        const user=JSON.parse(localStorage.getItem('user'));
+        if(user&&user.email===email&&user.password===pw){
+          msg.style.display='block';msg.style.color='#39d2c0';msg.textContent='✅ Sikeres belépés!';
+          showProfile(user);
+        }else{msg.style.display='
